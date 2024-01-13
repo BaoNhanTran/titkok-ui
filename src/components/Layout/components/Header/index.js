@@ -1,13 +1,39 @@
 import { useEffect, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import images from '~/assets/images';
-import { ClearIcon, LoadingIcon, PlusIcon, SearchIcon } from '~/components/Icon';
+import {
+    ClearIcon,
+    KeyboardIcon,
+    LanguageIcon,
+    LoadingIcon,
+    MenuIcon,
+    PlusIcon,
+    QuestionIcon,
+    SearchIcon,
+} from '~/components/Icon';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
+import Menu from '~/components/Popper/Menu';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+    {
+        icon: <LanguageIcon />,
+        title: 'English',
+    },
+    {
+        icon: <QuestionIcon />,
+        title: 'Feedback and help',
+        to: '/feedback',
+    },
+    {
+        icon: <KeyboardIcon />,
+        title: 'Keyboard shortcuts',
+    },
+];
 
 function Header() {
     const [searchResult, setSearchResult] = useState([]);
@@ -57,6 +83,11 @@ function Header() {
                     Upload
                 </Button>
                 <Button primary>log in</Button>
+                <Menu items={MENU_ITEMS}>
+                    <button className={cx('menu-btn')}>
+                        <MenuIcon />
+                    </button>
+                </Menu>
             </div>
         </header>
     );
