@@ -99,7 +99,26 @@ input:not(:placeholder-shown) ~ .search-btn {
     color: rgba(22, 24, 35, 0.5);
     user-select: none;
 }
+
 // Actions
 .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 328px;
+}
+
+.upload-btn {
+    min-width: 110px;
+    padding: 0px 16px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    border-radius: 2px;
+    background-color: var(--white);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 24px;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+    }
 }

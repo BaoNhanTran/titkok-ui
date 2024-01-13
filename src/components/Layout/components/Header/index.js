@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import images from '~/assets/images';
-import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icon';
+import { ClearIcon, LoadingIcon, PlusIcon, SearchIcon } from '~/components/Icon';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import Button from '~/components/Button';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
@@ -13,7 +14,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            setSearchResult([]);
         }, 0);
     }, []);
 
@@ -51,7 +52,12 @@ function Header() {
                     </button>
                 </div>
             </HeadlessTippy>
-            <div className={cx('actions')}></div>
+            <div className={cx('actions')}>
+                <Button className={cx('upload-btn')} leftIcon={<PlusIcon />}>
+                    Upload
+                </Button>
+                <Button primary>log in</Button>
+            </div>
         </header>
     );
 }

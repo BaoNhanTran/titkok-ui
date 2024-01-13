@@ -4,6 +4,7 @@
     --primary: rgb(254, 44, 85);
     --text-color: rgb(22, 24, 35);
     --font-family: 'TikTokFont';
+    --white: rgb(255, 255, 255);
 }
 
 * {
@@ -59,7 +60,7 @@ button {
     background-color: transparent;
 }
 
-a[href] {
+a {
     color: var(--text-color);
     text-decoration: none;
 }
