@@ -9,6 +9,7 @@
     padding-bottom: 8px;
 }
 
+// Menu items
 .menu-item {
     display: flex;
     justify-content: flex-start;
@@ -20,4 +21,31 @@
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
     }
+}
+
+// Header
+.header {
+    position: relative;
+    height: 50px;
+    margin-top: -8px;
+}
+
+.back-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 21px;
 }
