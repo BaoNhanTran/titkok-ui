@@ -43,19 +43,20 @@ input:not(:placeholder-shown) ~ .search-btn {
     color: rgba(22, 24, 35, 0.75);
 }
 
-.icon-wrapper {
-    position: relative;
-    line-height: 0;
-}
-
-.clear-btn,
+.clear,
 .loading {
+    line-height: 0;
     color: $searchIconColor;
 }
 
 .loading {
-    position: absolute;
-    right: 0;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        rotate: 360deg;
+    }
 }
 
 .separate {
