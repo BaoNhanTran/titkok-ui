@@ -1,7 +1,4 @@
 $headerHeight: 60px;
-$searchHeight: 46px;
-$searchBtnWidth: 52px;
-$searchIconColor: rgba(22, 24, 35, 0.34);
 
 .wrapper {
     display: flex;
@@ -15,89 +12,6 @@ $searchIconColor: rgba(22, 24, 35, 0.34);
 .logo {
     width: 300px;
     line-height: 0;
-}
-
-// Search
-.search,
-.search-result {
-    width: 500px;
-}
-
-.search {
-    display: flex;
-    align-items: center;
-    height: $searchHeight;
-    padding-inline: 16px;
-    background: rgba(22, 24, 35, 0.06);
-    border: 1px solid transparent;
-    border-radius: 92px;
-    overflow: hidden;
-
-    &:hover,
-    &:focus-within {
-        border-color: rgba(22, 24, 35, 0.2);
-    }
-
-    &:hover .search-btn {
-        color: var(--text-color);
-        background-color: rgba(22, 24, 35, 0.06);
-    }
-
-    input {
-        flex: 1;
-        height: 100%;
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 1.6rem;
-        line-height: 21px;
-        background-color: transparent;
-        caret-color: var(--primary);
-    }
-}
-
-input:not(:placeholder-shown) ~ .search-btn {
-    color: rgba(22, 24, 35, 0.75);
-}
-
-.icon-wrapper {
-    position: relative;
-    line-height: 0;
-}
-
-.clear-btn,
-.loading {
-    color: $searchIconColor;
-}
-
-.loading {
-    position: absolute;
-    right: 0;
-}
-
-.separate {
-    width: 1px;
-    height: 28px;
-    background: rgba(22, 24, 35, 0.12);
-}
-
-.search-btn {
-    width: $searchBtnWidth;
-    height: 100%;
-    color: $searchIconColor;
-    margin-right: -16px;
-    padding-right: 3px;
-    line-height: 0;
-    cursor: pointer;
-}
-
-.search-title {
-    height: 30px;
-    padding: 5px 12px;
-    font-size: 1.4rem;
-    line-height: 18px;
-    font-weight: 600;
-    color: rgba(22, 24, 35, 0.5);
-    user-select: none;
 }
 
 // Actions

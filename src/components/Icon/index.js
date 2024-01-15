@@ -18,12 +18,13 @@ export const SearchIcon = ({ width = '2.4rem', height = '2.4rem', className }) =
     );
 };
 
-export const ClearIcon = ({ width = '1.6rem', height = '1.6rem', className }) => {
+export const ClearIcon = ({ width = '1.6rem', height = '1.6rem', className, onClick }) => {
     return (
         <svg
             width={width}
             height={height}
             className={className}
+            onClick={onClick}
             data-e2e=""
             viewBox="0 0 48 48"
             fill="currentColor"

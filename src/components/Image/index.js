@@ -7,15 +7,17 @@ const cx = classNames.bind(styles);
 const Image = forwardRef(({ className, src, alt, fallback: customFallback = images.noImage, ...props }, ref) => {
     const [fallback, setFallback] = useState('');
 
+    const handleError = () => {
+        setFallback(customFallback);
+    };
+
     return (
         <img
             className={cx('wrapper', className)}
             src={fallback || src}
             alt={alt}
             {...props}
-            onError={() => {
-                setFallback(customFallback);
-            }}
+            onError={handleError}
             ref={ref}
         />
     );
