@@ -64,3 +64,27 @@ a {
     color: var(--text-color);
     text-decoration: none;
 }
+
+// Custom tippy tooltips
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 21px;
+        background-color: rgba(84, 84, 84, 0.92);
+        color: var(--white);
+    }
+
+    .tippy-content {
+        padding: 8px;
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow {
+        top: -1px;
+    }
+}
