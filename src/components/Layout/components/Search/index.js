@@ -80,7 +80,7 @@ function Search() {
                 )}
                 {loading && <LoadingIcon className={cx('loading')} />}
                 <span className={cx('separate')}></span>
-                <button className={cx('search-btn')}>
+                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

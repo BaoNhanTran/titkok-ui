@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images';
@@ -18,6 +19,7 @@ import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '~/components/Layout/components/Search';
+import routesConfig from '~/config/routes';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
@@ -93,9 +95,9 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('logo')}>
+            <Link className={cx('logo')} to={routesConfig.home}>
                 <img src={images.logo} alt="Tittok" />
-            </div>
+            </Link>
             <Search />
             <div className={cx('actions')}>
                 <Button className={cx('upload-btn')} leftIcon={<PlusIcon />}>
