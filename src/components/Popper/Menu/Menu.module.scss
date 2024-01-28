@@ -10,6 +10,10 @@
 }
 
 // Menu items
+.menu-body {
+    overflow-y: auto;
+}
+
 .menu-item {
     display: flex;
     justify-content: flex-start;
@@ -29,6 +33,7 @@
 
 // Header
 .header {
+    flex-shrink: 0;
     position: relative;
     height: 50px;
     margin-top: -8px;

@@ -44,47 +44,51 @@ function Search() {
     };
 
     return (
-        <HeadlessTippy
-            visible={showResult && searchResult.length > 0}
-            interactive
-            onClickOutside={handleHideResult}
-            render={(attrs) => {
-                return (
-                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper>
-                            <header className={cx('search-title')}>Accounts</header>
-                            {searchResult.map((result) => {
-                                return <AccountItem key={result.id} data={result} />;
-                            })}
-                        </PopperWrapper>
-                    </div>
-                );
-            }}
-        >
-            <div className={cx('search')}>
-                <input
-                    placeholder="Search"
-                    value={searchValue}
-                    onChange={(e) => {
-                        setSearchValue(e.target.value.trimStart());
-                    }}
-                    ref={inputRef}
-                    onFocus={() => {
-                        setShowResult(true);
-                    }}
-                />
-                {searchValue && !loading && (
-                    <button className={cx('clear')} onClick={handleClear}>
-                        <ClearIcon />
+        // Using a wrapper <div> tag around the reference element solves
+        // this by creating a new parentNode context.
+        <div>
+            <HeadlessTippy
+                visible={showResult && searchResult.length > 0}
+                interactive
+                onClickOutside={handleHideResult}
+                render={(attrs) => {
+                    return (
+                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
+                                <header className={cx('search-title')}>Accounts</header>
+                                {searchResult.map((result) => {
+                                    return <AccountItem key={result.id} data={result} />;
+                                })}
+                            </PopperWrapper>
+                        </div>
+                    );
+                }}
+            >
+                <div className={cx('search')}>
+                    <input
+                        placeholder="Search"
+                        value={searchValue}
+                        onChange={(e) => {
+                            setSearchValue(e.target.value.trimStart());
+                        }}
+                        ref={inputRef}
+                        onFocus={() => {
+                            setShowResult(true);
+                        }}
+                    />
+                    {searchValue && !loading && (
+                        <button className={cx('clear')} onClick={handleClear}>
+                            <ClearIcon />
+                        </button>
+                    )}
+                    {loading && <LoadingIcon className={cx('loading')} />}
+                    <span className={cx('separate')}></span>
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
+                        <SearchIcon />
                     </button>
-                )}
-                {loading && <LoadingIcon className={cx('loading')} />}
-                <span className={cx('separate')}></span>
-                <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
-                    <SearchIcon />
-                </button>
-            </div>
-        </HeadlessTippy>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 
