@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Image from '~/components/Image';
 import { CheckIcon } from '~/components/Icon';
 import classNames from 'classnames/bind';
@@ -24,5 +25,9 @@ function AccountItem({ data }) {
         </Link>
     );
 }
+
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default AccountItem;
