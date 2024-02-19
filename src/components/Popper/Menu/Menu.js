@@ -34,6 +34,25 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
         });
     };
 
+    const handleBack = () => {
+        setHistory((prev) => prev.slice(0, -1));
+    };
+
+    const handleResetToFirstPage = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
+    const handleResult = (attrs) => {
+        return (
+            <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
+                <PopperWrapper className={cx('menu-popper')}>
+                    {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+                    <div className={cx('menu-body')}>{renderItems()}</div>
+                </PopperWrapper>
+            </div>
+        );
+    };
+
     return (
         <HeadlessTippy
             delay={[0, 700]}
@@ -41,26 +60,8 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
             placement="top-end"
             offset={[15, 12]}
             hideOnClick={hideOnClick}
-            onHide={() => {
-                setHistory((prev) => prev.slice(0, 1));
-            }}
-            render={(attrs) => {
-                return (
-                    <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
-                        <PopperWrapper className={cx('menu-popper')}>
-                            {history.length > 1 && (
-                                <Header
-                                    title={current.title}
-                                    onBack={() => {
-                                        setHistory((prev) => prev.slice(0, -1));
-                                    }}
-                                />
-                            )}
-                            <div className={cx('menu-body')}>{renderItems()}</div>
-                        </PopperWrapper>
-                    </div>
-                );
-            }}
+            onHide={handleResetToFirstPage}
+            render={handleResult}
         >
             {children}
         </HeadlessTippy>
