@@ -1,7 +1,7 @@
 import routesConfig from '~/config/routes';
 
 // Layouts
-import { HeaderOnly } from '~/components/Layout';
+import { HeaderOnly } from '~/layouts';
 
 // Pages
 import { Home, Following, Upload, Profile, Search, NotFound } from '~/pages';
