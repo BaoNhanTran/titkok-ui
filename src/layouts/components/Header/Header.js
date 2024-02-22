@@ -19,7 +19,7 @@ import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
 import Image from '~/components/Image';
 import Search from '~/layouts/components/Search';
-import routesConfig from '~/config/routes';
+import config from '~/config';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
@@ -95,7 +95,7 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <Link className={cx('logo')} to={routesConfig.home}>
+            <Link className={cx('logo')} to={config.routes.home}>
                 <img src={images.logo} alt="Tittok" />
             </Link>
             <Search />
