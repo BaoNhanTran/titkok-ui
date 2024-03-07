@@ -40,7 +40,7 @@ $searchIconColor: rgba(22, 24, 35, 0.34);
 }
 
 input:not(:placeholder-shown) ~ .search-btn {
-    color: rgba(22, 24, 35, 0.75);
+    color: var(--text-color-secondary);
 }
 
 .clear,
@@ -81,6 +81,6 @@ input:not(:placeholder-shown) ~ .search-btn {
     font-size: 1.4rem;
     line-height: 18px;
     font-weight: 600;
-    color: rgba(22, 24, 35, 0.5);
+    color: var(--sub-title);
     user-select: none;
 }

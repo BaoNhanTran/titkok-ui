@@ -10,6 +10,7 @@
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
     padding: 0 24px 0 16px;
     background-color: var(--white);
+    z-index: 9;
 }
 
 .logo {
@@ -36,7 +37,7 @@
     line-height: 24px;
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--hover-color);
     }
 }
 

@@ -12,7 +12,7 @@ $infoMaxWidth: 380px;
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(22, 24, 35, 0.03);
+        background-color: var(--hover-color);
     }
 }
 
@@ -28,7 +28,7 @@ $infoMaxWidth: 380px;
     flex: 1;
 }
 
-.name {
+.nickname {
     display: flex;
     align-items: center;
     font-size: 1.6rem;
@@ -46,10 +46,10 @@ $infoMaxWidth: 380px;
     color: rgb(32, 213, 236);
 }
 
-.username {
+.name {
     font-size: 1.4rem;
     line-height: 18px;
-    color: rgba(22, 24, 35, 0.5);
+    color: var(--sub-title);
     font-weight: 400;
     @include textOverflowEllipsis;
 }
