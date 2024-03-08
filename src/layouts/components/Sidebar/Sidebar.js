@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 import Menu from './Menu';
-import SuggestedAccount from '~/components/SuggestedAccount/SuggestedAccount';
+import SuggestedAccount from '~/components/SuggestedAccount';
 const cx = classNames.bind(styles);
 
 function Sidebar() {

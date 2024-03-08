@@ -17,9 +17,9 @@ import {
 } from '~/components/Icons';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import Image from '~/components/Image';
 import Search from '~/layouts/components/Search';
 import config from '~/config';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 const cx = classNames.bind(styles);
@@ -122,9 +122,9 @@ function Header() {
                 )}
                 <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                     {currentUser ? (
-                        <Image
+                        <Avatar
                             className={cx('user-avatar')}
-                            src="https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/66b4eedd8048999291a50a02de45c166~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1708520400&x-signature=Djv3Ovm9K%2BiieegXtuLcY2PqAQI%3D"
+                            src="https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7d2dbea9f0d29b24cbdaf679b173c050~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1710057600&x-signature=5YwWR8nUfA7Yla3he3V3xWGTEyY%3D"
                             alt="Nguyen Van A"
                         />
                     ) : (

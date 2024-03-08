@@ -1,1 +1,1 @@
-export { defaul } from './SuggestedAccount';
+export { default } from './SuggestedAccount';

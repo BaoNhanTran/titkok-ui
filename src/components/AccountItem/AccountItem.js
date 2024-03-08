@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Image from '~/components/Image';
 import { CheckIcon } from '~/components/Icons';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 const cx = classNames.bind(styles);
@@ -9,7 +9,9 @@ const cx = classNames.bind(styles);
 function AccountItem({ data }) {
     return (
         <Link className={cx('wrapper')} to={`/profile/${data.nickname}`}>
-            <Image
+            <Avatar
+                width="36px"
+                height="40px"
                 className={cx('avatar')}
                 src={data.avatar}
                 alt={data.full_name}
@@ -17,7 +19,7 @@ function AccountItem({ data }) {
             />
             <div className={cx('info')}>
                 <h4 className={cx('nickname')}>
-                    <span>{data.nickname}</span>
+                    <strong>{data.nickname}</strong>
                     {data.tick && <CheckIcon className={cx('check')} />}
                 </h4>
                 <p className={cx('name')}>{data.full_name}</p>

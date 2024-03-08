@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
+import { Wrapper as PopperWrapper } from '~/components/Popper';
 import * as searchService from '~/service/searchService';
 import { ClearIcon, LoadingIcon, SearchIcon } from '~/components/Icons';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
-import { useDebounce } from '~/hooks';
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -44,6 +44,8 @@ function Search() {
     };
 
     return (
+        // Interactive tippy element may not be accessible via keyboard navigation
+        // because it is not directly after the reference element in the DOM source order.
         // Using a wrapper <div> tag around the reference element solves
         // this by creating a new parentNode context.
         <div>

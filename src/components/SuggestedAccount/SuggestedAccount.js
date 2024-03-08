@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
+
 import AccountItem from './AccountItem';
 import * as userService from '~/service/userService';
 import classNames from 'classnames/bind';
 import styles from './SuggestedAccount.module.scss';
-import { useState, useEffect } from 'react';
 const cx = classNames.bind(styles);
 
 const INIT_PAGE = 1;

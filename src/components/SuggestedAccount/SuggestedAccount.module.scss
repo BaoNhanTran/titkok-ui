@@ -36,7 +36,6 @@ $infoMaxWidth: 145px;
     display: flex;
     align-items: center;
     padding: 8px;
-    cursor: pointer;
     transition: background-color 200ms ease-in-out 0s;
 
     &:hover {
@@ -45,11 +44,7 @@ $infoMaxWidth: 145px;
 }
 
 .avatar {
-    width: 32px;
-    height: 32px;
     margin-right: 12px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 .info {
@@ -91,4 +86,10 @@ $infoMaxWidth: 145px;
     font-size: 1.4rem;
     line-height: 18px;
     color: var(--primary);
+}
+
+// Custom styles for preview-popper of AccountPreview
+.preview-popper {
+    padding: 20px;
+    width: 320px;
 }
