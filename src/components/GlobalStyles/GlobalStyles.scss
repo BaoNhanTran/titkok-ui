@@ -77,8 +77,12 @@ button,
 [tabindex] {
     border: none;
     outline: none;
-    background-color: transparent;
     color: var(--text-color);
+}
+
+input,
+button {
+    background-color: transparent;
 }
 
 a {
