@@ -12,6 +12,7 @@
     line-height: 0;
 }
 
+// Actions
 .actions {
     display: flex;
     align-items: center;
@@ -31,4 +32,10 @@
             background: var(--hover-color);
         }
     }
+}
+
+.menu-btn {
+    margin-left: 16px;
+    padding: 0px 4px;
+    cursor: pointer;
 }

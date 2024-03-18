@@ -1,0 +1,32 @@
+.menu-list {
+    width: 223px;
+
+    .menu-item {
+        margin-left: 0;
+    }
+}
+
+.menu-popper {
+    position: relative;
+    padding-bottom: 8px;
+    overflow: visible;
+}
+
+.arrow {
+    position: absolute;
+    color: var(--white);
+    top: -12%;
+    right: 6%;
+}
+
+// Menu item
+.menu-item {
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px 8px 10px 16px;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
