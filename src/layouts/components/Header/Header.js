@@ -12,6 +12,21 @@ const MENU_ITEMS = [
     {
         icon: <LanguageIcon />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+            ],
+        },
     },
     {
         icon: <CircleQuestionIcon />,
@@ -23,6 +38,17 @@ const MENU_ITEMS = [
         title: 'Keyboard shortcuts',
     },
 ];
+
+// Handle logic
+const handleMenuChange = (menuItem) => {
+    switch (menuItem.type) {
+        case 'language':
+            // handle change to language
+            console.log(menuItem);
+            break;
+        default:
+    }
+};
 
 function Header() {
     return (
@@ -36,7 +62,7 @@ function Header() {
                     Upload
                 </Button>
                 <Button primary>Log in</Button>
-                <Menu items={MENU_ITEMS}>
+                <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                     <button className={cx('menu-btn')}>
                         <EllipsisVerticalIcon />
                     </button>
