@@ -15,8 +15,12 @@
 .arrow {
     position: absolute;
     color: var(--white);
-    top: -12%;
-    right: 6%;
+    top: -17px;
+    right: 14px;
+
+    &.login {
+        right: 16px;
+    }
 }
 
 // Menu item
@@ -28,6 +32,10 @@
 
     &:hover {
         background-color: var(--hover-color);
+    }
+
+    &.separate {
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
 }
 

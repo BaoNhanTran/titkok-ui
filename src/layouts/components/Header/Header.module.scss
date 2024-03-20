@@ -39,3 +39,41 @@
     padding: 0px 4px;
     cursor: pointer;
 }
+
+.actions-btn {
+    position: relative;
+    height: 32px;
+    cursor: pointer;
+    margin-left: 16px;
+}
+
+.message-btn {
+    padding: 3px 3px 0;
+}
+
+.sup-badge {
+    position: absolute;
+    top: -20%;
+    left: 16px;
+    display: flex;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    color: var(--white);
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 18px;
+    background-color: var(--primary);
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-left: 24px;
+}

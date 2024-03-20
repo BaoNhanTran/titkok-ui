@@ -1,6 +1,20 @@
 import images from '~/assets/images';
 import Button from '~/components/Button/Button';
-import { CircleQuestionIcon, EllipsisVerticalIcon, KeyboardIcon, LanguageIcon, PlusIcon } from '~/components/Icons';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import {
+    ArrowRightToBracketIcon,
+    CircleQuestionIcon,
+    CoinIcon,
+    EllipsisVerticalIcon,
+    GearIcon,
+    InboxIcon,
+    KeyboardIcon,
+    LanguageIcon,
+    PaperPlaneIcon,
+    PlusIcon,
+    UserIcon,
+} from '~/components/Icons';
 import Search from '~/layouts/components/Search';
 import Menu from '~/components/Popper/Menu';
 import classNames from 'classnames/bind';
@@ -39,6 +53,31 @@ const MENU_ITEMS = [
     },
 ];
 
+const userMenu = [
+    {
+        icon: <UserIcon />,
+        title: 'View profile',
+        to: '/profile/nhantran',
+    },
+    {
+        icon: <CoinIcon />,
+        title: 'Get Coins',
+        to: '/profile',
+    },
+    {
+        icon: <GearIcon />,
+        title: 'Settings',
+        to: '/settings',
+    },
+    ...MENU_ITEMS,
+    {
+        icon: <ArrowRightToBracketIcon />,
+        title: 'Log out',
+        to: '/logout',
+        separate: true,
+    },
+];
+
 // Handle logic
 const handleMenuChange = (menuItem) => {
     switch (menuItem.type) {
@@ -51,6 +90,8 @@ const handleMenuChange = (menuItem) => {
 };
 
 function Header() {
+    const currentUser = true;
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('logo')}>
@@ -61,11 +102,40 @@ function Header() {
                 <Button className={cx('upload-btn')} leftIcon={<PlusIcon />} primary>
                     Upload
                 </Button>
-                <Button primary>Log in</Button>
-                <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-                    <button className={cx('menu-btn')}>
-                        <EllipsisVerticalIcon />
-                    </button>
+                {currentUser ? (
+                    <>
+                        <Tippy content="Messages" placement="bottom" interactive>
+                            <button className={cx('actions-btn', 'message-btn')}>
+                                <PaperPlaneIcon />
+                            </button>
+                        </Tippy>
+                        <Tippy content="Inbox" placement="bottom" interactive>
+                            <button className={cx('actions-btn')}>
+                                <InboxIcon />
+                                <sup className={cx('sup-badge')}>9</sup>
+                            </button>
+                        </Tippy>
+                    </>
+                ) : (
+                    <Button primary>Log in</Button>
+                )}
+                <Menu
+                    items={currentUser ? userMenu : MENU_ITEMS}
+                    onChange={handleMenuChange}
+                    currentUser={currentUser}
+                    offset={currentUser ? [12, 12] : [12, 10]}
+                >
+                    {currentUser ? (
+                        <img
+                            className={cx('user-avatar')}
+                            src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/e5f5ca1a62de4e7a1c3653e048f4c479~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1711004400&x-signature=j4N3U53uaong%2FUdj1R6R30WgFAo%3D"
+                            alt="nguyenvana"
+                        />
+                    ) : (
+                        <button className={cx('menu-btn')}>
+                            <EllipsisVerticalIcon />
+                        </button>
+                    )}
                 </Menu>
             </div>
         </header>
