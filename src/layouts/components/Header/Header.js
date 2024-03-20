@@ -17,6 +17,7 @@ import {
 } from '~/components/Icons';
 import Search from '~/layouts/components/Search';
 import Menu from '~/components/Popper/Menu';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -62,7 +63,7 @@ const userMenu = [
     {
         icon: <CoinIcon />,
         title: 'Get Coins',
-        to: '/profile',
+        to: '/coin',
     },
     {
         icon: <GearIcon />,
@@ -126,10 +127,13 @@ function Header() {
                     offset={currentUser ? [12, 12] : [12, 10]}
                 >
                     {currentUser ? (
-                        <img
+                        <Avatar
+                            width="32px"
+                            height="32px"
                             className={cx('user-avatar')}
                             src="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/e5f5ca1a62de4e7a1c3653e048f4c479~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1711004400&x-signature=j4N3U53uaong%2FUdj1R6R30WgFAo%3D"
                             alt="nguyenvana"
+                            // fallback="https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/bf5ecfe37355084845d0c3a1fabd4687~c5_100x100.jpeg?lk3s=a5d48078&x-expires=1711098000&x-signature=v9QlGfe2BsBbh6mxNbHAdwhHfIA%3D"
                         />
                     ) : (
                         <button className={cx('menu-btn')}>

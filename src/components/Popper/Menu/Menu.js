@@ -57,7 +57,6 @@ function Menu({ children, items = [], onChange = defaultFn, currentUser, offset 
 
     return (
         <HeadlessTippy
-            visible
             interactive
             placement="bottom-end"
             delay={[0, 700]}
