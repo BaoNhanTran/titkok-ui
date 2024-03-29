@@ -1,25 +1,22 @@
 import { TickIcon } from '../Icons';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
-        <div className={cx('wrapper')}>
-            <img
-                className={cx('avatar')}
-                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7a2097efcb5b9944b9ea06c89c838627~c5_300x300.webp?lk3s=a5d48078&x-expires=1710846000&x-signature=pv6ZZtnSjsOxsmhPva%2FrTiXULT0%3D"
-                alt="nguyenvana"
-            />
+        <Link className={cx('wrapper')} to={`/profile/${data.nickname}`}>
+            <img className={cx('avatar')} src={data.avatar} alt={data.nickname} />
             <div className={cx('info')}>
                 <h4 className={cx('nickname')}>
-                    <p>nguyenvana</p>
-                    <TickIcon className={cx('tick')} />
+                    <p>{data.nickname}</p>
+                    {data.tick && <TickIcon className={cx('tick')} />}
                 </h4>
-                <p className={cx('name')}>Nguyen Van A</p>
+                <p className={cx('name')}>{data.full_name}</p>
             </div>
-        </div>
+        </Link>
     );
 }
 
