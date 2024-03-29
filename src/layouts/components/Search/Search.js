@@ -3,6 +3,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { CircleXmarkIcon, MagnifyingGlassIcon, SpinnerIcon } from '~/components/Icons/Icons';
 import AccountItem from '~/components/AccountItem';
+import useDebouce from '~/hooks/useDebounce';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
@@ -16,24 +17,25 @@ function Search() {
 
     const inputRef = useRef('');
 
+    const debouncedValue = useDebouce(searchValue, 500);
+
     useEffect(() => {
-        if (!searchValue) {
+        if (!debouncedValue) {
             return;
         }
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
             .then((res) => res.json())
             .then((res) => {
                 setLoading(false);
                 setSearchResult(res.data);
-                console.log(res.data);
             })
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debouncedValue]);
 
     const handleInput = (e) => {
         const value = e.target.value;
@@ -53,7 +55,7 @@ function Search() {
 
     return (
         <HeadlessTippy
-            visible={searchResult.length > 0 && searchValue && showResult}
+            visible={debouncedValue && showResult}
             interactive
             onClickOutside={handleHideResult}
             render={(attrs) => (
