@@ -1,6 +1,7 @@
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useSpring, animated } from '@react-spring/web';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
 import Header from './Header';
 import { CaretUpIcon } from '~/components/Icons';
@@ -97,5 +98,14 @@ function Menu({ children, items = [], onChange = defaultFn, currentUser, offset,
         </HeadlessTippy>
     );
 }
+
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    onChange: PropTypes.func,
+    currentUser: PropTypes.bool,
+    offset: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+};
 
 export default Menu;

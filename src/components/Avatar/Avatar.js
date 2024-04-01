@@ -1,5 +1,6 @@
 import { forwardRef } from 'react';
 import Image from '~/components/Image';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Avatar.module.scss';
 
@@ -13,5 +14,11 @@ const Avatar = forwardRef(({ width = '40px', height = '40px', className, ...prop
 
     return <Image className={cx('wrapper', className)} ref={ref} style={avatarSize} {...props} />;
 });
+
+forwardRef.propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    className: PropTypes.string,
+};
 
 export default Avatar;
