@@ -1,5 +1,6 @@
 import images from '~/assets/images';
 import Button from '~/components/Button/Button';
+import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import {
@@ -18,6 +19,7 @@ import {
 import Search from '~/layouts/components/Search';
 import Menu from '~/components/Popper/Menu';
 import Avatar from '~/components/Avatar';
+import config from '~/config';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -30,6 +32,86 @@ const MENU_ITEMS = [
         children: {
             title: 'Language',
             data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
                 {
                     type: 'language',
                     code: 'en',
@@ -95,8 +177,10 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('logo')}>
-                <img src={images.logo} alt="TikTok" />
+            <div className={cx('header-left')}>
+                <Link className={cx('logo')} to={config.routes.home}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
             </div>
             <Search />
             <div className={cx('actions')}>
@@ -105,17 +189,21 @@ function Header() {
                 </Button>
                 {currentUser ? (
                     <>
-                        <Tippy content="Messages" placement="bottom" interactive>
-                            <button className={cx('actions-btn', 'message-btn')}>
-                                <PaperPlaneIcon />
-                            </button>
-                        </Tippy>
-                        <Tippy content="Inbox" placement="bottom" interactive>
-                            <button className={cx('actions-btn')}>
-                                <InboxIcon />
-                                <sup className={cx('sup-badge')}>9</sup>
-                            </button>
-                        </Tippy>
+                        <div id="message-parent">
+                            <Tippy content="Messages" placement="bottom" interactive>
+                                <button className={cx('actions-btn', 'message-btn')}>
+                                    <PaperPlaneIcon />
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div id="inbox-parrent">
+                            <Tippy content="Inbox" placement="bottom" interactive>
+                                <button className={cx('actions-btn')}>
+                                    <InboxIcon />
+                                    <sup className={cx('sup-badge')}>9</sup>
+                                </button>
+                            </Tippy>
+                        </div>
                     </>
                 ) : (
                     <Button primary>Log in</Button>

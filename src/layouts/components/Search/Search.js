@@ -82,14 +82,14 @@ function Search() {
                         ref={inputRef}
                         onFocus={() => setShowResult(true)}
                     />
-                    {searchValue && !loading && (
+                    {!!searchValue && !loading && (
                         <button className={cx('clear')} onClick={handleClear}>
                             <CircleXmarkIcon />
                         </button>
                     )}
                     {loading && <SpinnerIcon className={cx('loading')} />}
                     <span className={cx('separate')}></span>
-                    <button className={cx('search-btn')}>
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <MagnifyingGlassIcon />
                     </button>
                 </div>
