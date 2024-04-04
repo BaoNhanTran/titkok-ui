@@ -42,86 +42,6 @@ const MENU_ITEMS = [
                     code: 'vi',
                     title: 'Tiếng Việt',
                 },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
-                {
-                    type: 'language',
-                    code: 'en',
-                    title: 'English',
-                },
-                {
-                    type: 'language',
-                    code: 'vi',
-                    title: 'Tiếng Việt',
-                },
             ],
         },
     },
@@ -189,14 +109,14 @@ function Header() {
                 </Button>
                 {currentUser ? (
                     <>
-                        <div id="message-parent">
+                        <div className={cx('message-parent')}>
                             <Tippy content="Messages" placement="bottom" interactive>
                                 <button className={cx('actions-btn', 'message-btn')}>
                                     <PaperPlaneIcon />
                                 </button>
                             </Tippy>
                         </div>
-                        <div id="inbox-parrent">
+                        <div className={cx('inbox-parent')}>
                             <Tippy content="Inbox" placement="bottom" interactive>
                                 <button className={cx('actions-btn')}>
                                     <InboxIcon />
