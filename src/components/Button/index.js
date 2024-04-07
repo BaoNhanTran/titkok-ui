@@ -1,1 +1,1 @@
-export { default as Wrapper } from './Button';
+export { default } from './Button';

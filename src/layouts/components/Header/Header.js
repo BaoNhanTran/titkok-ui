@@ -1,5 +1,5 @@
 import images from '~/assets/images';
-import Button from '~/components/Button/Button';
+import Button from '~/components/Button';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';

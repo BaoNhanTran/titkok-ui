@@ -1,0 +1,98 @@
+$infoMaxWidth: 280px;
+
+@mixin textOverflowEllipsis {
+    max-width: $infoMaxWidth;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-popper {
+    width: 320px;
+    padding: 20px;
+    z-index: 999;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+// Actions
+.avatar {
+    line-height: 0;
+    margin-right: 12px;
+}
+
+.follow-btn {
+    min-width: 106px;
+    min-height: 28px;
+    border-radius: 4px;
+    padding: 6px 8px;
+    line-height: 22px;
+}
+
+// Info
+.info {
+    flex: 1;
+    margin: 12px 0 8px 0;
+}
+
+.nickname {
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 24px;
+
+    p {
+        @include textOverflowEllipsis;
+    }
+}
+
+.tick {
+    margin-left: 4px;
+    color: rgb(32, 213, 236);
+}
+
+.name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 18px;
+    white-space: nowrap;
+    @include textOverflowEllipsis;
+}
+
+// Interaction count
+.count {
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 1.7rem;
+    line-height: 20px;
+}
+
+.label {
+    color: var(--text-color-secondary);
+    font-size: 1.7rem;
+    line-height: 20px;
+
+    &:not(:last-of-type) {
+        margin-right: 12px;
+    }
+}
+
+// Bio
+.bio {
+    font-size: 1.4rem;
+    line-height: 18px;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}
