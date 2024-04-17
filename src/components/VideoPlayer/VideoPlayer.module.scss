@@ -1,0 +1,262 @@
+$videoCardPaddingY: 60px;
+
+.wrapper {
+    position: relative;
+    display: flex;
+    max-width: 692px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+.container {
+    flex: 1;
+    margin-left: 12px;
+}
+
+// Info
+.info {
+    margin-right: 114px;
+}
+
+.author-container {
+    display: inline-flex;
+    align-items: center;
+    &:hover .nickname {
+        text-decoration: underline;
+    }
+}
+
+.nickname {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 28px;
+    margin-right: 4px;
+
+    &.underline {
+        text-decoration: underline;
+    }
+}
+
+.tick {
+    margin-left: 4px;
+    color: rgb(32, 213, 236);
+}
+
+.name {
+    display: inline-block;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 28px;
+}
+
+.follow-btn {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    min-width: 96px;
+}
+
+// Music
+.music-wrapper {
+    margin: 2px 0 12px 2px;
+}
+
+.music-link {
+    display: flex;
+    align-items: center;
+}
+
+.music-icon {
+    margin-right: 5px;
+}
+
+.music-text {
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 21px;
+}
+
+// Video
+.video-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.video-card {
+    position: relative;
+    margin-right: 20px;
+    width: 247px;
+    height: calc(100vh - var(--default-layout-header-height) - $videoCardPaddingY);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.video {
+    clip-path: fill-box;
+}
+
+// Action
+.action {
+    position: absolute;
+    bottom: 26px;
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+// Volume
+.volume-control {
+    position: relative;
+    width: 24px;
+    height: 64px;
+    margin: 8px 7px 0px;
+    border-radius: 32px;
+    background-color: rgba(22, 24, 35, 0.34);
+    cursor: initial;
+    visibility: hidden;
+
+    &.show {
+        visibility: visible;
+    }
+}
+
+.volume-slider {
+    position: absolute;
+    bottom: 30px;
+    right: -12px;
+    rotate: -90deg;
+    height: 2px;
+    width: 48px;
+    background-color: rgba(255, 255, 255, 0.34);
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.volume-thumb {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--white);
+}
+
+.volume-btn {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+
+// Control
+.control {
+    position: absolute;
+    bottom: 12px;
+    width: 100%;
+    display: flex;
+    padding-inline: 12px;
+    cursor: initial;
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+
+    &.show {
+        opacity: 1;
+    }
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: 16px;
+}
+
+.slider-track {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.34);
+    cursor: pointer;
+}
+
+.seekbar-time {
+    flex: 0 0 64px;
+    max-width: 64px;
+    margin-inline-start: 8px;
+    font-size: 1rem;
+    line-height: 16px;
+    color: var(--white);
+    text-align: end;
+    white-space: nowrap;
+    font-feature-settings: 'tnum';
+}
+
+// Interaction-count
+.interaction-count {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    button {
+        cursor: pointer;
+    }
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 8px 0 6px 0;
+    border-radius: 50%;
+    background-color: rgba(22, 24, 35, 0.06);
+}
+
+.count {
+    font-family: var(--font-family);
+    color: var(--text-color-secondary);
+    font-size: 1.2rem;
+    line-height: 16px;
+}
