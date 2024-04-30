@@ -8,6 +8,13 @@ $videoCardPaddingY: 60px;
     padding: 20px 0;
 }
 
+// Account preview
+.preview {
+    position: absolute;
+    top: 32px;
+    left: -69px;
+}
+
 .avatar {
     width: 56px;
     height: 56px;
@@ -156,12 +163,27 @@ $videoCardPaddingY: 60px;
     rotate: -90deg;
     height: 2px;
     width: 48px;
+}
+
+.volume-slider-track {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.34);
     -webkit-appearance: none;
     cursor: pointer;
+    z-index: 1;
 }
 
-.volume-slider::-webkit-slider-thumb {
+.volume-slider-fill {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    background-color: var(--white);
+}
+
+.volume-slider-track::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 12px;
@@ -169,6 +191,7 @@ $videoCardPaddingY: 60px;
     border-radius: 50%;
     background-color: var(--white);
     cursor: pointer;
+    z-index: 2;
 }
 
 .volume-thumb {
@@ -186,14 +209,21 @@ $videoCardPaddingY: 60px;
     width: 40px;
     height: 40px;
     padding: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease 0s;
+
+    &.show {
+        opacity: 1;
+    }
 }
 
 // Control
 .control {
+    display: flex;
     position: absolute;
     bottom: 12px;
     width: 100%;
-    display: flex;
+    height: 16px;
     padding-inline: 12px;
     cursor: initial;
     opacity: 0;
@@ -204,20 +234,54 @@ $videoCardPaddingY: 60px;
     }
 }
 
-.slider {
+.slider-wrapper {
     position: relative;
     width: 100%;
-    height: 16px;
+    height: 100%;
+
+    &:hover .slider {
+        height: 4px;
+    }
+
+    &:hover .slider::-webkit-slider-thumb {
+        background-color: var(--white);
+        cursor: pointer;
+    }
+
+    &:hover .slider-fill {
+        height: 4px;
+    }
 }
 
-.slider-track {
+.slider {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
     height: 2px;
     background-color: rgba(255, 255, 255, 0.34);
+    -webkit-appearance: none;
     cursor: pointer;
+    z-index: 1;
+}
+
+.slider-fill {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background-color: var(--white);
+}
+
+.slider::-webkit-slider-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    z-index: 2;
 }
 
 .seekbar-time {

@@ -15,10 +15,6 @@ $infoMaxWidth: 280px;
 .wrapper {
     display: flex;
     align-items: center;
-
-    &:hover {
-        background-color: var(--hover-color);
-    }
 }
 
 .actions {

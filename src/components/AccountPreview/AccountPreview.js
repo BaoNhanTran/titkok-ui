@@ -10,9 +10,9 @@ import styles from './AccountPreview.module.scss';
 
 const cx = classNames.bind(styles);
 
-function AccountPreview({ children, data }) {
+function AccountPreview({ children, data, className }) {
     const handleResult = (attrs) => (
-        <div className={cx('wrapper')} tabIndex="-1" {...attrs}>
+        <div className={cx('wrapper', className)} tabIndex="-1" {...attrs}>
             <PopperWrapper className={cx('account-popper')}>
                 <div className={cx('actions')}>
                     <Link className={cx('avatar')} to={`/profile/${data.nickname}`} target="_blank">
@@ -50,14 +50,24 @@ function AccountPreview({ children, data }) {
     );
 
     return (
-        <HeadlessTippy delay={[1000, 0]} placement="bottom-start" offset={[0, 0]} interactive render={handleResult}>
-            {children}
-        </HeadlessTippy>
+        <div>
+            <HeadlessTippy
+                delay={[1000, 0]}
+                placement="bottom-start"
+                offset={[-8, 0]}
+                interactive
+                render={handleResult}
+            >
+                {children}
+            </HeadlessTippy>
+        </div>
     );
 }
 
 AccountPreview.propTypes = {
+    children: PropTypes.node.isRequired,
     data: PropTypes.object.isRequired,
+    className: PropTypes.string,
 };
 
 export default AccountPreview;
