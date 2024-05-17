@@ -3,6 +3,9 @@
 :root {
     --primary: rgb(254, 44, 85);
     --font-family: 'TikTokFont';
+
+    // default layout
+    --default-layout-header-height: 60px;
 }
 
 html {
@@ -10,6 +13,8 @@ html {
 }
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
