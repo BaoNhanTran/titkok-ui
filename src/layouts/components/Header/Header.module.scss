@@ -1,6 +1,18 @@
 .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: var(--default-layout-header-height);
     padding: 0 24px 0 16px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 1px;
+}
+
+.logo {
+    width: 300px;
+    line-height: 0;
+}
+
+.action {
+    width: 276px;
 }
