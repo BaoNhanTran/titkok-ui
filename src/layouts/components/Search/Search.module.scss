@@ -1,10 +1,14 @@
 $searchIconsColor: rgba(22, 24, 35, 0.34);
 $grayColor: rgba(22, 24, 35, 0.06);
 
+.search,
+.search-result {
+    width: 500px;
+}
+
 .search {
     display: flex;
     align-items: center;
-    width: 500px;
     height: 46px;
     padding-inline: 16px;
     background-color: $grayColor;
@@ -55,4 +59,13 @@ input:not(:placeholder-shown) ~ .search-btn {
     color: $searchIconsColor;
     line-height: 0;
     cursor: pointer;
+}
+
+.search-title {
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 1.4rem;
+    line-height: 18px;
+    font-weight: 600;
+    color: var(--sub-title-color);
 }

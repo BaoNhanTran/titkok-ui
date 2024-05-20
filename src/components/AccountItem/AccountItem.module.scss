@@ -1,0 +1,50 @@
+$infoMaxWidth: 382px;
+
+@mixin textOverflowEllipsis {
+    max-width: $infoMaxWidth;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 9px 16px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 36px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    line-height: 21px;
+    font-weight: 600;
+
+    p {
+        @include textOverflowEllipsis;
+    }
+}
+
+.check {
+    margin-left: 8px;
+    color: rgb(32, 213, 236);
+}
+
+.name {
+    font-size: 1.4rem;
+    line-height: 18px;
+    color: var(--sub-title-color);
+    white-space: nowrap;
+    @include textOverflowEllipsis;
+}
