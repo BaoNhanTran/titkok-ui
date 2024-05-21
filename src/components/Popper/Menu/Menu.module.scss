@@ -1,0 +1,19 @@
+.menu-list {
+    min-width: 223px;
+    .menu-item {
+        margin-left: 0;
+    }
+}
+
+.menu-item {
+    width: 223px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px 8px 10px 16px;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
