@@ -1,7 +1,10 @@
 import { images } from '~/assets';
+import Search from '~/layouts/components/Search';
+import Button from '~/components/Button';
+import config from '~/config';
+import { PlusIcon } from '~/components/Icons';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import Search from '~/layouts/components/Search';
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +15,12 @@ function Header() {
                 <img src={images.logo} alt="TikTok" />
             </div>
             <Search />
-            <div className={cx('action')}></div>
+            <div className={cx('action')}>
+                <Button className={cx('upload-btn')} leftIcon={<PlusIcon />} outline to={config.routes.upload}>
+                    Upload
+                </Button>
+                <Button primary>Log in</Button>
+            </div>
         </header>
     );
 }

@@ -13,6 +13,19 @@
     line-height: 0;
 }
 
+// Action
 .action {
+    display: flex;
+    align-items: center;
     width: 276px;
+
+    .upload-btn {
+        padding: 0 16px;
+        border: 1px solid rgba(22, 24, 35, 0.12);
+        color: var(--text-color);
+
+        &:hover {
+            background-color: rgba(22, 24, 35, 0.03);
+        }
+    }
 }

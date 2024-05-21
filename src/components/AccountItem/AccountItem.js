@@ -1,6 +1,6 @@
+import { CircleCheckIcon } from '~/components/Icons';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
-import { CircleCheckIcon } from '~/Icons';
 
 const cx = classNames.bind(styles);
 
