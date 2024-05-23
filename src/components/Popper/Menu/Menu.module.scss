@@ -1,10 +1,40 @@
 .menu-list {
+    position: relative;
     min-width: 223px;
+
     .menu-item {
         margin-left: 0;
     }
 }
 
+.menu-popper {
+    padding-bottom: 8px;
+}
+
+// Header
+.header {
+    display: flex;
+    position: relative;
+    height: 50px;
+    margin-top: -8px;
+}
+
+.back-btn {
+    width: 50px;
+    cursor: pointer;
+    padding-left: 16px;
+}
+
+.header-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    user-select: none;
+}
+
+// Menu item
 .menu-item {
     width: 223px;
     display: flex;
@@ -16,4 +46,12 @@
     &:hover {
         background-color: var(--hover-color);
     }
+}
+
+.arrow {
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    line-height: 0;
+    color: var(--white);
 }

@@ -17,7 +17,6 @@
 .action {
     display: flex;
     align-items: center;
-    width: 276px;
 
     .upload-btn {
         padding: 0 16px;
@@ -33,5 +32,6 @@
 .menu-btn {
     margin-left: 16px;
     padding: 0 4px;
+    line-height: 0;
     cursor: pointer;
 }
