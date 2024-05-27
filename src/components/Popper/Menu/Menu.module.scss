@@ -11,6 +11,18 @@
     padding-bottom: 8px;
 }
 
+.arrow {
+    position: absolute;
+    bottom: 100%;
+    right: 15px;
+    line-height: 0;
+    color: var(--white);
+
+    &.login {
+        right: 17px;
+    }
+}
+
 // Header
 .header {
     display: flex;
@@ -48,10 +60,6 @@
     }
 }
 
-.arrow {
-    position: absolute;
-    bottom: 100%;
-    right: 15px;
-    line-height: 0;
-    color: var(--white);
+.separate {
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
 }

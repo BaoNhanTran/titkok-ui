@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], onChange = defaultFn, currentUser }) {
     const [history, setHistory] = useState([{ data: items }]);
 
     const current = history[history.length - 1];
@@ -23,7 +23,11 @@ function Menu({ children, items = [], onChange = defaultFn }) {
 
     const handleResult = (attrs) => (
         <animated.div className={cx('menu-list')} style={props} tabIndex="-1" {...attrs}>
-            <div className={cx('arrow')}>
+            <div
+                className={cx('arrow', {
+                    login: currentUser,
+                })}
+            >
                 <CaretUpIcon />
             </div>
             <PopperWrapper className={cx('menu-popper')}>
