@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+.action-btns-parent {
+    line-height: 0;
+}
+
 .action-btns {
     position: relative;
     height: 32px;
@@ -67,10 +71,6 @@
 }
 
 .user-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
     margin-left: 24px;
     cursor: pointer;
 }

@@ -11,14 +11,14 @@ $infoMaxWidth: 382px;
     align-items: center;
     padding: 9px 16px;
     cursor: pointer;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
 }
 
 .avatar {
-    width: 36px;
-    height: 40px;
     margin-right: 12px;
-    border-radius: 50%;
-    object-fit: cover;
 }
 
 .info {
