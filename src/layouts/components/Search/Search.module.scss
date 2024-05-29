@@ -43,6 +43,7 @@ input:not(:placeholder-shown) ~ .search-btn {
 .clear-btn,
 .loading {
     color: $searchIconsColor;
+    line-height: 0;
 }
 
 .separate {
