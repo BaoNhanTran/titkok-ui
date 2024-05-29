@@ -40,10 +40,20 @@ input:not(:placeholder-shown) ~ .search-btn {
     color: var(--text-color-secondary);
 }
 
-.clear-btn,
-.loading {
+.clear-btn {
     color: $searchIconsColor;
     line-height: 0;
+}
+
+.loading {
+    color: $searchIconsColor;
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        rotate: 360deg;
+    }
 }
 
 .separate {

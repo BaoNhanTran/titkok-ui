@@ -3,6 +3,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import useDebounce from '~/hooks/useDebounce';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
@@ -12,14 +13,32 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowResult] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef('');
 
+    const debouncedValue = useDebounce(searchValue, 500);
+
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1]);
+            if (!debouncedValue) {
+                return;
+            }
+
+            setLoading(true);
+
+            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
+                .then((res) => res.json())
+                .then((res) => {
+                    setLoading(false);
+                    setSearchResult(res.data);
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    console.log(err);
+                });
         }, 0);
-    }, [searchValue]);
+    }, [debouncedValue]);
 
     const handleInput = (e) => {
         const value = e.target.value;
@@ -43,7 +62,7 @@ function Search() {
         // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
         <div>
             <HeadlessTippy
-                visible={searchResult.length > 0 && searchValue && showResult}
+                visible={debouncedValue && showResult}
                 interactive
                 placement="bottom"
                 offset={[0, 8]}
@@ -52,10 +71,9 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
+                            {searchResult.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
                         </PopperWrapper>
                     </div>
                 )}
@@ -68,10 +86,12 @@ function Search() {
                         onFocus={() => setShowResult(true)}
                         ref={inputRef}
                     />
-                    <button className={cx('clear-btn')} onClick={handleClear}>
-                        <CircleXmarkIcon />
-                    </button>
-                    <CircleNotchIcon className={cx('loading')} />
+                    {!!searchValue && !loading && (
+                        <button className={cx('clear-btn')} onClick={handleClear}>
+                            <CircleXmarkIcon />
+                        </button>
+                    )}
+                    {loading && <CircleNotchIcon className={cx('loading')} />}
                     <span className={cx('separate')}></span>
                     <button className={cx('search-btn')}>
                         <MagnifyingGlassIcon />
