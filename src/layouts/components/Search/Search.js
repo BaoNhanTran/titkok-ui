@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import * as searchService from '~/service/searchService';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/components/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -20,24 +21,20 @@ function Search() {
     const debouncedValue = useDebounce(searchValue, 500);
 
     useEffect(() => {
-        setTimeout(() => {
-            if (!debouncedValue) {
-                return;
-            }
+        if (!debouncedValue) {
+            return;
+        }
 
+        const fetchApi = async () => {
             setLoading(true);
 
-            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debouncedValue)}&type=less`)
-                .then((res) => res.json())
-                .then((res) => {
-                    setLoading(false);
-                    setSearchResult(res.data);
-                })
-                .catch((err) => {
-                    setLoading(false);
-                    console.log(err);
-                });
-        }, 0);
+            const res = await searchService.search(debouncedValue);
+            setSearchResult(res);
+
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debouncedValue]);
 
     const handleInput = (e) => {
