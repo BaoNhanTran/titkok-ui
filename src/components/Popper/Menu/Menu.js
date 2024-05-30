@@ -12,10 +12,26 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn, currentUser }) {
+function Menu({ children, items = [], onChange = defaultFn, currentUser, hideOnClick = true }) {
     const [history, setHistory] = useState([{ data: items }]);
 
     const current = history[history.length - 1];
+
+    const renderItems = () => {
+        return current.data.map((item, index) => {
+            const handleMoveToNextPage = () => {
+                const isParent = !!item.children;
+
+                if (isParent) {
+                    setHistory((prev) => [...prev, item.children]);
+                } else {
+                    onChange(item);
+                }
+            };
+
+            return <MenuItem key={index} data={item} onClick={handleMoveToNextPage} />;
+        });
+    };
 
     const handleBack = () => {
         setHistory((prev) => prev.slice(0, -1));
@@ -32,19 +48,7 @@ function Menu({ children, items = [], onChange = defaultFn, currentUser }) {
             </div>
             <PopperWrapper className={cx('menu-popper')}>
                 {history.length > 1 && <Header onBack={handleBack} title={current.title} />}
-                {current.data.map((item, index) => {
-                    const handleMoveToNextPage = () => {
-                        const isParent = !!item.children;
-
-                        if (isParent) {
-                            setHistory((prev) => [...prev, item.children]);
-                        } else {
-                            onChange(item);
-                        }
-                    };
-
-                    return <MenuItem key={index} data={item} onClick={handleMoveToNextPage} />;
-                })}
+                <div className={cx('menu-body')}>{renderItems()}</div>
             </PopperWrapper>
         </animated.div>
     );
@@ -89,6 +93,7 @@ function Menu({ children, items = [], onChange = defaultFn, currentUser }) {
             animation={true}
             onMount={handleMountTippy}
             onHide={handleHideTippy}
+            hideOnClick={hideOnClick}
         >
             {children}
         </HeadlessTippy>

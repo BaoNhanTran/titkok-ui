@@ -1,5 +1,6 @@
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { Link } from 'react-router-dom';
 import { images } from '~/assets';
 import Search from '~/layouts/components/Search';
 import Button from '~/components/Button';
@@ -96,8 +97,10 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('logo')}>
-                <img src={images.logo} alt="TikTok" />
+            <div className={cx('header-left')}>
+                <Link className={cx('logo')} to={config.routes.home}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
             </div>
             <Search />
             <div className={cx('action')}>
@@ -129,7 +132,12 @@ function Header() {
                 ) : (
                     <Button primary>Log in</Button>
                 )}
-                <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange} currentUser={currentUser}>
+                <Menu
+                    items={currentUser ? userMenu : MENU_ITEMS}
+                    onChange={handleMenuChange}
+                    currentUser={currentUser}
+                    hideOnClick={false}
+                >
                     {currentUser ? (
                         <Avatar
                             width="32px"
