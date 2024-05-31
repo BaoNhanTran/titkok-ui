@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { CircleCheckIcon } from '~/components/Icons';
 import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
@@ -20,5 +21,9 @@ function AccountItem({ data }) {
         </Link>
     );
 }
+
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default AccountItem;
