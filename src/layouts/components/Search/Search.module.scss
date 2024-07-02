@@ -1,5 +1,4 @@
 $searchIconsColor: rgba(22, 24, 35, 0.34);
-$grayColor: rgba(22, 24, 35, 0.06);
 
 .search,
 .search-result {
@@ -11,7 +10,7 @@ $grayColor: rgba(22, 24, 35, 0.06);
     align-items: center;
     height: 46px;
     padding-inline: 16px;
-    background-color: $grayColor;
+    background-color: var(--gray);
     border-radius: 92px;
     border: 1px solid transparent;
     overflow: hidden;
@@ -22,7 +21,7 @@ $grayColor: rgba(22, 24, 35, 0.06);
     }
 
     &:hover .search-btn {
-        background-color: $grayColor;
+        background-color: var(--gray);
         color: var(--text-color);
     }
 

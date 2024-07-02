@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as videoService from '~/service/videoService';
+import * as videoService from '~/services/videoService';
 import VideoPlayer from '~/components/VideoPlayer';
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
@@ -20,9 +20,9 @@ function Home() {
 
     return (
         <div className={cx('wrapper')}>
-            {/* {videosList.map((video) => (
+            {videosList.map((video) => (
                 <VideoPlayer key={video.id} data={video} />
-            ))} */}
+            ))}
         </div>
     );
 }
