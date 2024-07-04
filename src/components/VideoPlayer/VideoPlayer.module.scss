@@ -117,14 +117,20 @@ $sliderColor: rgba(255, 255, 255, 0.34);
 }
 
 // Slider
+.slider-container {
+    width: 100%;
+    height: 16px;
+    padding-inline: 12px;
+}
+
 .slider-wrapper {
     position: relative;
     width: 100%;
-    height: 16px;
-    line-height: 0;
-    cursor: default;
+    height: 100%;
+    cursor: initial;
 
-    &:hover .slider {
+    &:hover .slider,
+    &:hover .slider-fill {
         height: 4px;
     }
 
@@ -136,8 +142,8 @@ $sliderColor: rgba(255, 255, 255, 0.34);
 .slider {
     position: absolute;
     top: 50%;
-    left: 12px;
-    right: 12px;
+    left: 0;
+    right: 0;
     transform: translateY(-50%);
     height: 2px;
     background-color: $sliderColor;
@@ -153,6 +159,15 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     background-color: transparent;
     -webkit-appearance: none;
     cursor: pointer;
+}
+
+.slider-fill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    background-color: var(--white);
 }
 
 // Volume control
@@ -209,6 +224,11 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     background-color: var(--white);
     -webkit-appearance: none;
     cursor: pointer;
+}
+
+.volume-slider-fill {
+    height: 100%;
+    background-color: var(--white);
 }
 
 // Interaction
