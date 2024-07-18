@@ -8,6 +8,7 @@ const cx = classNames.bind(styles);
 
 function Home() {
     const [videosList, setVideosList] = useState([]);
+    const [isMutedGlobal, setIsMutedGlobal] = useState(true);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -18,10 +19,20 @@ function Home() {
         fetchApi();
     }, []);
 
+    const handleToggleMute = () => {
+        setIsMutedGlobal(!isMutedGlobal);
+    };
+
     return (
         <div className={cx('wrapper')}>
             {videosList.map((video) => (
-                <VideoPlayer key={video.id} data={video} />
+                <VideoPlayer
+                    key={video.id}
+                    data={video}
+                    isMutedGlobal={isMutedGlobal}
+                    setIsMutedGlobal={setIsMutedGlobal}
+                    onToggleMute={handleToggleMute}
+                />
             ))}
         </div>
     );

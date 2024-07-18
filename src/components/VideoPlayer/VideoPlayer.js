@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Avatar from '~/components/Avatar';
@@ -22,9 +22,9 @@ import styles from './VideoPlayer.module.scss';
 
 const cx = classNames.bind(styles);
 
-function VideoPlayer({ data }) {
+function VideoPlayer({ data, isMutedGlobal, setIsMutedGlobal, onToggleMute }) {
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-    const [isMuted, setIsMuted] = useState(true);
+    // const [isMuted, setIsMuted] = useState(true);
     const [currentPercent, setCurrentPercent] = useState(0);
     const [volumeValue, setVolumeValue] = useState(0);
 
@@ -48,6 +48,47 @@ function VideoPlayer({ data }) {
             count: data.shares_count,
         },
     ];
+
+    // Toggle video play/pause based on full video visibility in the viewport.
+    useEffect(() => {
+        const videoElement = videoRef.current;
+
+        const handlePlay = (entries) => {
+            entries.forEach((entry) => {
+                const isPlaying =
+                    videoElement.currentTime > 0 &&
+                    !videoElement.paused &&
+                    !videoElement.ended &&
+                    videoElement.readyState > videoElement.HAVE_CURRENT_DATA;
+
+                if (entry.isIntersecting) {
+                    if (!isPlaying) {
+                        videoElement.currentTime = 0;
+                        videoElement.play();
+                    }
+                } else {
+                    videoElement.pause();
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handlePlay, {
+            threshold: 0.75,
+        });
+
+        observer.observe(videoElement);
+
+        return () => {
+            observer.unobserve(videoElement);
+        };
+    }, []);
+
+    // Mute/unmute all videos on the website when the volume button is clicked.
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.muted = isMutedGlobal;
+        }
+    }, [isMutedGlobal]);
 
     // Set 'isVideoPlaying' to true if the video is playing, or false if it is paused.
     const handleVideoPlayEvent = () => {
@@ -80,8 +121,8 @@ function VideoPlayer({ data }) {
 
     // Toggle volume on/off on volume button click.
     const toggleMuted = () => {
-        setIsMuted(!isMuted);
-        if (isMuted) {
+        onToggleMute();
+        if (isMutedGlobal) {
             setVolumeValue(20);
             videoRef.current.volume = 0.2;
         } else {
@@ -95,9 +136,9 @@ function VideoPlayer({ data }) {
         setVolumeValue(volumeValue);
         videoRef.current.volume = volumeValue / 100;
         if (volumeValue === '0') {
-            setIsMuted(true);
+            setIsMutedGlobal(true);
         } else {
-            setIsMuted(false);
+            setIsMutedGlobal(false);
         }
     };
 
@@ -113,7 +154,7 @@ function VideoPlayer({ data }) {
                         onPause={handleVideoPauseEvent}
                         onTimeUpdate={handleTimeUpdate}
                         loop
-                        muted={isMuted}
+                        muted={isMutedGlobal}
                         autoPlay
                     ></video>
                     <div className={cx('video-card-bottom')}>
@@ -169,7 +210,7 @@ function VideoPlayer({ data }) {
                                     </div>
                                 </div>
                                 <div className={cx('volume-btn')} onClick={toggleMuted}>
-                                    {isMuted ? <VolumeXmarkIcon /> : <VolumeMediumIcon />}
+                                    {isMutedGlobal ? <VolumeXmarkIcon /> : <VolumeMediumIcon />}
                                 </div>
                             </div>
                         </div>
@@ -197,6 +238,9 @@ function VideoPlayer({ data }) {
 
 VideoPlayer.propTypes = {
     data: PropTypes.object.isRequired,
+    isMutedGlobal: PropTypes.bool,
+    setIsMutedGlobal: PropTypes.func,
+    onToggleMute: PropTypes.func,
 };
 
 export default VideoPlayer;
