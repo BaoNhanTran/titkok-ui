@@ -27,6 +27,13 @@ body {
     text-rendering: optimizeSpeed;
 }
 
+button,
+input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
 // Font embedded
 @font-face {
     font-family: 'TikTokFont';
