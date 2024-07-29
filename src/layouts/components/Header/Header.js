@@ -1,5 +1,6 @@
 import images from '~/assets/images';
 import Search from '~/layouts/components/Search';
+import Button from '~/components/Button';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -12,7 +13,9 @@ function Header() {
                 <img src={images.logo} alt="TikTok" />
             </div>
             <Search />
-            <div className={cx('actions')}></div>
+            <div className={cx('actions')}>
+                <Button primary>Log in</Button>
+            </div>
         </header>
     );
 }

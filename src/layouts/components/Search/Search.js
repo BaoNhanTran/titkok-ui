@@ -29,7 +29,6 @@ function Search() {
                 interactive
                 offset={[0, 8]}
                 placement="bottom"
-                visible
             >
                 <form className={cx('search')}>
                     <input placeholder="Search" />

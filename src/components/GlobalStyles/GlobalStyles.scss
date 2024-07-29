@@ -29,6 +29,11 @@ body {
     text-rendering: optimizeSpeed;
 }
 
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 button,
 input {
     border: none;
