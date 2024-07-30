@@ -12,7 +12,15 @@
     line-height: 0;
 }
 
+// Actions
 .actions {
     display: flex;
     width: 160px;
+}
+
+.menu-btn {
+    margin-left: 16px;
+    padding: 0px 4px;
+    line-height: 0;
+    cursor: pointer;
 }

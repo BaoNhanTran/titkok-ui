@@ -20,6 +20,15 @@
     }
 }
 
+.icon + .title,
+.title + .icon {
+    margin-left: 8px;
+}
+
+.icon {
+    line-height: 0;
+}
+
 //Button types
 .primary {
     color: var(--white);
