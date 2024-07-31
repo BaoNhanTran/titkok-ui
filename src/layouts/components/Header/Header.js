@@ -22,6 +22,21 @@ const MENU_ITEMS = [
     {
         icon: <SquareAIcon />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+            ],
+        },
     },
     {
         icon: <CircleQuestionIcon />,
@@ -35,6 +50,16 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // handle change to language
+                console.log(menuItem);
+                break;
+            default:
+        }
+    };
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('logo')}>
@@ -43,7 +68,7 @@ function Header() {
             <Search />
             <div className={cx('actions')}>
                 <Button primary>Log in</Button>
-                <Menu items={MENU_ITEMS}>
+                <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                     <button className={cx('menu-btn')}>
                         <EllipsisVerticalIcon />
                     </button>
