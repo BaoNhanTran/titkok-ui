@@ -46,6 +46,10 @@ input:not(:placeholder-shown) ~ .search-btn {
     color: $searchIconsColor;
 }
 
+.clear-btn {
+    line-height: 0;
+}
+
 .separate {
     width: 1px;
     height: 28px;

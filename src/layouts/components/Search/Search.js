@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/components/Icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PoperWrapper } from '~/components/Popper';
@@ -8,6 +9,34 @@ import styles from './Search.module.scss';
 const cx = classNames.bind(styles);
 
 function Search() {
+    const [searchResult, setSearchResult] = useState([]);
+    const [searchValue, setSearchValue] = useState('');
+    const [showResult, setShowResult] = useState(false);
+
+    const inputRef = useRef('');
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3, 4]);
+        }, 0);
+    }, []);
+
+    const handleInput = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
+    const handleClear = () => {
+        setSearchValue('');
+        inputRef.current.focus();
+    };
+
+    const handleHideResult = () => {
+        setShowResult(false);
+    };
+
     return (
         // Interactive tippy element may not be accessible via keyboard navigation
         // because it is not directly after the reference element in the DOM source order.
@@ -26,14 +55,26 @@ function Search() {
                         </PoperWrapper>
                     </div>
                 )}
+                visible={searchValue && showResult}
                 interactive
                 offset={[0, 8]}
                 placement="bottom"
+                onClickOutside={handleHideResult}
             >
                 <form className={cx('search')}>
-                    <input placeholder="Search" />
-                    <CircleXmarkIcon className={cx('clear-btn')} />
-                    <CircleNotchIcon className={cx('loading')} />
+                    <input
+                        placeholder="Search"
+                        value={searchValue}
+                        onChange={handleInput}
+                        onFocus={(e) => setShowResult(true)}
+                        ref={inputRef}
+                    />
+                    {searchValue && (
+                        <button className={cx('clear-btn')} onClick={handleClear}>
+                            <CircleXmarkIcon />
+                        </button>
+                    )}
+                    {/* <CircleNotchIcon className={cx('loading')} /> */}
                     <span className={cx('separate')}></span>
                     <button className={cx('search-btn')}>
                         <MagnifyingGlassIcon />
