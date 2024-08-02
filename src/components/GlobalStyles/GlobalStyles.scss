@@ -5,6 +5,7 @@
     --primary: rgb(254, 44, 85);
     --text-color: rgb(22, 24, 35);
     --sub-title-color: rgba(22, 24, 35, 0.5);
+    --separate-color: rgba(22, 24, 35, 0.12);
     --hover-color: rgba(22, 24, 35, 0.03);
     --white: rgb(255, 255, 255);
 
@@ -71,4 +72,24 @@ input {
     font-family: 'TikTokDisplayFont';
     src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
     font-weight: 700;
+}
+
+// Custom Tippy tooltips
+body {
+    .tippy-box {
+        border-radius: 8px;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px;
+        font-size: 1.6rem;
+        font-weight: 600;
+        line-height: 21px;
+    }
+
+    .tippy-box[data-placement^='bottom'] > .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+        top: -1px;
+    }
 }

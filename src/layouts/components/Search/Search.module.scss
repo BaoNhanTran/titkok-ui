@@ -49,7 +49,7 @@ input:not(:placeholder-shown) ~ .search-btn {
 .separate {
     width: 1px;
     height: 28px;
-    background: rgba(22, 24, 35, 0.12);
+    background: var(--separate-color);
 }
 
 .search-btn {

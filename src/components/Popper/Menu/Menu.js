@@ -83,7 +83,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             render={handleResults}
             placement="bottom-end"
             interactive
-            offset={[12, 4]}
+            offset={[12, 12]}
             animation={true}
             onMount={handleMountTippy}
             onHide={handleHideTippy}
