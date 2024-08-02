@@ -4,6 +4,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PoperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import { useDebounce } from '~/hooks';
+import * as searchService from '~/services/searchService';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
@@ -25,17 +26,16 @@ function Search() {
         }
 
         setTimeout(() => {
-            setLoading(true);
-            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounceValue)}&type=less`)
-                .then((res) => res.json())
-                .then((res) => {
-                    setLoading(false);
-                    setSearchResults(res.data);
-                })
-                .catch((err) => {
-                    setLoading(false);
-                    console.log(err);
-                });
+            const fetchApi = async () => {
+                setLoading(true);
+
+                const res = await searchService.search(debounceValue);
+                setSearchResults(res);
+
+                setLoading(false);
+            };
+
+            fetchApi();
         }, 0);
     }, [debounceValue]);
 
