@@ -18,6 +18,7 @@ import {
     UserIcon,
 } from '~/components/Icons';
 import Menu from '~/components/Popper/Menu';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -125,8 +126,10 @@ function Header() {
                 )}
                 <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                     {currentUser ? (
-                        <img
+                        <Avatar
                             className={cx('user-avatar')}
+                            width="32px"
+                            height="32px"
                             src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/9e05bfce01aec386ad106a70004c2ee8.jpeg?lk3s=a5d48078&nonce=26800&refresh_token=321156004e104529612ccb229b4405d8&x-expires=1722672000&x-signature=RusgtO5iN3nJzRqmbiIxMGQNmio%3D&shp=a5d48078&shcp=b59d6b55"
                             alt="nguyenvana"
                         />
