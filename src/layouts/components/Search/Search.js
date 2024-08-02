@@ -3,23 +3,41 @@ import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/compone
 import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PoperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
+import { useDebounce } from '~/hooks';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
 function Search() {
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [showResult, setShowResult] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef('');
 
+    const debounceValue = useDebounce(searchValue, 500);
+
     useEffect(() => {
+        if (!debounceValue) {
+            return;
+        }
+
         setTimeout(() => {
-            setSearchResult([1, 2, 3, 4]);
+            setLoading(true);
+            fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounceValue)}&type=less`)
+                .then((res) => res.json())
+                .then((res) => {
+                    setLoading(false);
+                    setSearchResults(res.data);
+                })
+                .catch((err) => {
+                    setLoading(false);
+                    console.log(err);
+                });
         }, 0);
-    }, []);
+    }, [debounceValue]);
 
     const handleInput = (e) => {
         const searchValue = e.target.value;
@@ -47,15 +65,13 @@ function Search() {
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <PoperWrapper>
                             <h4 className={cx('search-title')}>Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
+                            {searchResults.map((result) => (
+                                <AccountItem key={result.id} data={result} />
+                            ))}
                         </PoperWrapper>
                     </div>
                 )}
-                visible={searchValue && showResult}
+                visible={debounceValue && showResult}
                 interactive
                 offset={[0, 8]}
                 placement="bottom"
@@ -69,12 +85,12 @@ function Search() {
                         onFocus={(e) => setShowResult(true)}
                         ref={inputRef}
                     />
-                    {searchValue && (
+                    {!!searchValue && !loading && (
                         <button className={cx('clear-btn')} onClick={handleClear}>
                             <CircleXmarkIcon />
                         </button>
                     )}
-                    {/* <CircleNotchIcon className={cx('loading')} /> */}
+                    {!!loading && <CircleNotchIcon className={cx('loading')} />}
                     <span className={cx('separate')}></span>
                     <button className={cx('search-btn')}>
                         <MagnifyingGlassIcon />
