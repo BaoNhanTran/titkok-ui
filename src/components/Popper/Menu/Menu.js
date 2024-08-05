@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useSpring, animated } from '@react-spring/web';
 import { Wrapper as PoperWrapper } from '~/components/Popper';
@@ -93,5 +94,12 @@ function Menu({ children, items = [], onChange = defaultFn, hideOnClick = true }
         </HeadlessTippy>
     );
 }
+
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array.isRequired,
+    onChange: PropTypes.func,
+    hideOnClick: PropTypes.bool,
+};
 
 export default Menu;

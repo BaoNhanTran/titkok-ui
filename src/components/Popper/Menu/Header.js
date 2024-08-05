@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { ChevronLeftIcon } from '~/components/Icons';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
@@ -14,5 +15,10 @@ function Header({ title, onBack }) {
         </header>
     );
 }
+
+Header.propTypes = {
+    title: PropTypes.string,
+    onBack: PropTypes.func.isRequired,
+};
 
 export default Header;
