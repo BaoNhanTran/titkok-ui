@@ -7,7 +7,13 @@
 }
 
 .menu-popper {
+    display: flex;
+    flex-direction: column;
     padding-bottom: 8px;
+}
+
+.menu-body {
+    overflow-y: auto;
 }
 
 .arrow {
@@ -42,6 +48,7 @@
 .header {
     position: relative;
     display: flex;
+    flex-shrink: 0;
     height: 50px;
 }
 

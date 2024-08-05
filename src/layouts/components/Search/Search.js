@@ -77,7 +77,7 @@ function Search() {
                 placement="bottom"
                 onClickOutside={handleHideResult}
             >
-                <form className={cx('search')}>
+                <div className={cx('search')}>
                     <input
                         placeholder="Search"
                         value={searchValue}
@@ -92,10 +92,10 @@ function Search() {
                     )}
                     {!!loading && <CircleNotchIcon className={cx('loading')} />}
                     <span className={cx('separate')}></span>
-                    <button className={cx('search-btn')}>
+                    <button className={cx('search-btn')} onMouseDown={(e) => e.preventDefault()}>
                         <MagnifyingGlassIcon />
                     </button>
-                </form>
+                </div>
             </HeadlessTippy>
         </div>
     );

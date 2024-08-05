@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({ children, items = [], onChange = defaultFn, hideOnClick = true }) {
     const [history, setHistory] = useState([{ data: items }]);
 
     const current = history[history.length - 1];
@@ -43,7 +43,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             </div>
             <PoperWrapper className={cx('menu-popper')}>
                 {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
-                {renderItems()}
+                <div className={cx('menu-body')}>{renderItems()}</div>
             </PoperWrapper>
         </animated.div>
     );
@@ -87,6 +87,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
             animation={true}
             onMount={handleMountTippy}
             onHide={handleHideTippy}
+            hideOnClick={hideOnClick}
         >
             {children}
         </HeadlessTippy>

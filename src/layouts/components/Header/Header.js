@@ -19,6 +19,8 @@ import {
 } from '~/components/Icons';
 import Menu from '~/components/Popper/Menu';
 import Avatar from '~/components/Avatar';
+import config from '~/config';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -98,8 +100,10 @@ function Header() {
 
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('logo')}>
-                <img src={images.logo} alt="TikTok" />
+            <div className={cx('header-left')}>
+                <Link className={cx('logo')} to={config.routes.home}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
             </div>
             <Search />
             <div className={cx('actions')}>
@@ -108,23 +112,30 @@ function Header() {
                         <Button className={cx('upload-btn')} leftIcon={<PlusIcon />}>
                             Upload
                         </Button>
-                        <Tippy content="Messages" interactive>
-                            <button className={cx('action-btns', 'messages-btn')}>
-                                <PaperPlaneIcon />
-                                <sup className={cx('sup-badge')}>13</sup>
-                            </button>
-                        </Tippy>
-                        <Tippy content="Inbox" interactive>
-                            <button className={cx('action-btns')}>
-                                <InboxIcon />
-                                <sup className={cx('sup-badge')}>29</sup>
-                            </button>
-                        </Tippy>
+                        {/* Interactive tippy element may not be accessible via keyboard navigation
+                        because it is not directly after the reference element in the DOM source order.
+                        Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context. */}
+                        <div className={cx('action-btns-parent')}>
+                            <Tippy content="Messages" interactive>
+                                <button className={cx('action-btns', 'messages-btn')}>
+                                    <PaperPlaneIcon />
+                                    <sup className={cx('sup-badge')}>13</sup>
+                                </button>
+                            </Tippy>
+                        </div>
+                        <div className={cx('action-btns-parent')}>
+                            <Tippy content="Inbox" interactive>
+                                <button className={cx('action-btns')}>
+                                    <InboxIcon />
+                                    <sup className={cx('sup-badge')}>29</sup>
+                                </button>
+                            </Tippy>
+                        </div>
                     </>
                 ) : (
                     <Button primary>Log in</Button>
                 )}
-                <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange} hideOnClick={false}>
                     {currentUser ? (
                         <Avatar
                             className={cx('user-avatar')}
