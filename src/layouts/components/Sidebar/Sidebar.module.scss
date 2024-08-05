@@ -1,3 +1,11 @@
 .wrapper {
     width: 240px;
 }
+
+.sidebar-container {
+    position: fixed;
+    width: 240px;
+    height: 2000px;
+    padding: 20px 8px 26px 8px;
+    overflow-y: auto;
+}
