@@ -8,6 +8,7 @@ import {
     VideoPlayIcon,
 } from '~/components/Icons';
 import config from '~/config';
+import SuggestedAccounts from '~/components/SuggestedAccounts';
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
 
@@ -39,6 +40,7 @@ function Sidebar() {
         <aside className={cx('wrapper')}>
             <div className={cx('sidebar-container')}>
                 <Menu items={MENU_ITEMS} />
+                <SuggestedAccounts />
             </div>
         </aside>
     );
