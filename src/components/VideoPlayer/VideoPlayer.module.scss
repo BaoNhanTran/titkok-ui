@@ -1,0 +1,229 @@
+$videoCardBottomMaxWidth: 215px;
+@mixin textOverflowEllipsis {
+    max-width: $videoCardBottomMaxWidth;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    max-width: 592px;
+    margin: 0 auto;
+    height: calc(100vh - var(--default-layout-header-height));
+    padding-block: 20px;
+}
+
+// Video card
+.video-card {
+    position: relative;
+    width: 260px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-right: 20px;
+    cursor: pointer;
+
+    &:hover .action {
+        height: 40px;
+        visibility: visible;
+    }
+}
+
+.video {
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-card-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    padding: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(rgba(18, 18, 18, 0) 0%, rgba(12, 12, 12, 0.5) 30%, rgba(12, 12, 12, 0.9) 100%);
+}
+
+// Info
+.author-container {
+    display: flex;
+    margin: 8px 0;
+    color: currentColor;
+}
+
+.nickname {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 21px;
+    @include textOverflowEllipsis();
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.tick {
+    color: rgb(32, 213, 236);
+    margin-left: 4px;
+    line-height: 21px;
+}
+
+.video-desc {
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 21px;
+    @include textOverflowEllipsis();
+}
+
+.video-music {
+    display: flex;
+    align-items: center;
+    margin: 2px 0 0 2px;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 21px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.music-icon {
+    margin-right: 5px;
+}
+
+.music-text {
+    white-space: nowrap;
+    @include textOverflowEllipsis();
+}
+
+// Action
+.action {
+    display: flex;
+    align-items: center;
+    height: 0;
+    margin-inline: -8px;
+    visibility: hidden;
+    transition: height 0.3s ease-out;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+// Slider
+.slider-container {
+    position: relative;
+    flex: 1;
+    height: 16px;
+    padding-inline: 12px;
+
+    &:hover .slider {
+        height: 4px;
+    }
+
+    &:hover .slider::-webkit-slider-thumb {
+        background-color: var(--white);
+    }
+}
+
+.slider {
+    -webkit-appearance: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.34);
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.volume-btn {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+// Interaction
+.interaction {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    button {
+        cursor: pointer;
+    }
+
+    .interacted {
+        color: var(--primary);
+        transition: color 200ms ease-in-out 0s;
+    }
+}
+
+.avatar-container {
+    position: relative;
+    margin-bottom: 20px;
+    line-height: 0;
+
+    .avatar {
+        cursor: pointer;
+    }
+}
+
+.avatar-follow-btn {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 24px;
+    height: 24px;
+    border: 1px solid transparent;
+    border-radius: 24px;
+    line-height: 0;
+    transform: translate(-50%, 50%);
+    background-color: var(--primary);
+    color: var(--white);
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(234, 40, 78, 1);
+    }
+
+    &.followed {
+        background-color: var(--white);
+        color: var(--primary);
+        border-color: var(--separate-color);
+    }
+}
+
+.icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    margin: 8px 0 6px;
+    border-radius: 50%;
+    background-color: var(--gray);
+}
+
+.count {
+    color: var(--text-color-secondary);
+    font-size: 1.4rem;
+    font-family: var(--font-family);
+}
