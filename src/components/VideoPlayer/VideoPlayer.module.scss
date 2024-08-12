@@ -1,3 +1,4 @@
+$sliderColor: rgba(255, 255, 255, 0.34);
 $videoCardBottomMaxWidth: 215px;
 @mixin textOverflowEllipsis {
     max-width: $videoCardBottomMaxWidth;
@@ -121,12 +122,12 @@ $videoCardBottomMaxWidth: 215px;
 
 // Slider
 .slider-container {
-    position: relative;
     flex: 1;
     height: 16px;
     padding-inline: 12px;
 
-    &:hover .slider {
+    &:hover .slider,
+    &:hover .slider-fill {
         height: 4px;
     }
 
@@ -135,13 +136,26 @@ $videoCardBottomMaxWidth: 215px;
     }
 }
 
-.slider {
-    -webkit-appearance: none;
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slider,
+.slider-fill {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     height: 2px;
-    background-color: rgba(255, 255, 255, 0.34);
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    background-color: $sliderColor;
+    z-index: 1;
 }
 
 .slider::-webkit-slider-thumb {
@@ -151,6 +165,58 @@ $videoCardBottomMaxWidth: 215px;
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
+}
+
+.slider-fill {
+    background-color: var(--white);
+    // background-color: transparent;
+}
+
+// Volume
+.volume-container {
+    position: relative;
+
+    &:hover .volume-slider-wrapper {
+        visibility: visible;
+    }
+}
+
+.volume-control {
+    position: absolute;
+    bottom: 100%;
+}
+
+.volume-slider-wrapper {
+    position: relative;
+    width: 24px;
+    height: 64px;
+    background: rgba(22, 24, 35, 0.34);
+    border-radius: 32px;
+    margin: 8px 7px 0px;
+    visibility: hidden;
+}
+
+.volume-slider {
+    position: absolute;
+    bottom: 30px;
+    right: -12px;
+    width: 48px;
+    height: 2px;
+    transform: rotate(-90deg);
+    cursor: pointer;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    background-color: $sliderColor;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--white);
 }
 
 .volume-btn {
