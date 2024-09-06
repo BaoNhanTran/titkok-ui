@@ -1,0 +1,83 @@
+$infoMaxWidth: 260px;
+@mixin textOverflowEllipsis {
+    max-width: $infoMaxWidth;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wrapper {
+    width: 320px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
+}
+
+.head-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    line-height: 0;
+}
+
+// Info
+.follow-btn {
+    min-width: 106px;
+    min-height: 28px;
+    line-height: 22px;
+    font-weight: 600;
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+
+    p {
+        @include textOverflowEllipsis();
+    }
+}
+
+.tick {
+    color: rgb(32, 213, 236);
+    margin-left: 4px;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 18px;
+    @include textOverflowEllipsis();
+}
+
+// User stat
+.user-stat {
+    margin-top: 8px;
+    font-size: 1.7rem;
+    line-height: 20px;
+}
+
+.count {
+    margin-right: 6px;
+    font-weight: 700;
+}
+
+.label:not(:last-of-type) {
+    margin-right: 12px;
+}
+
+.label {
+    color: var(--text-color-secondary);
+}
+
+.signature {
+    margin-top: 16px;
+    padding-top: 16px;
+    font-size: 1.4rem;
+    line-height: 18px;
+    border-top: 1px solid rgba(22, 24, 35, 0.12);
+}

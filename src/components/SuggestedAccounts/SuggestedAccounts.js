@@ -25,7 +25,8 @@ function SuggestedAccounts() {
     }, [page]);
 
     const handleSeeMore = () => {
-        setPage(page + 1);
+        setPage((prevPage) => prevPage + 1);
+        console.log(page);
     };
 
     return (

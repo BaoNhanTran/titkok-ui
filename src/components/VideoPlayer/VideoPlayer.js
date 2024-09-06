@@ -1,9 +1,11 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import {
     BookmarkFillIcon,
     BubbleEllipsisRightFillIcon,
     CircleCheckIcon,
+    EllipsisIcon,
     HeartIcon,
     MusicIcon,
     PauseIcon,
@@ -16,19 +18,64 @@ import {
 } from '~/components/Icons';
 import Avatar from '~/components/Avatar';
 import InteractionItem from './InteractionItem';
+import AccountPreview from '~/components/AccountPreview';
 import classNames from 'classnames/bind';
 import styles from './VideoPlayer.module.scss';
 
 const cx = classNames.bind(styles);
 
-function VideoPlayer({ data }) {
+function VideoPlayer({ data, isMutedGlobal, setIsMutedGlobal }) {
     const [currentPercent, setCurrentPercent] = useState(0);
     const [isVideoPlaying, setIsVideoPlaying] = useState(false);
     const [isFollowed, setIsFollowed] = useState(false);
-    const [isMuted, setIsMuted] = useState(true);
     const [volumeValue, setVolumeValue] = useState(0);
 
     const videoRef = useRef('');
+
+    // Toggle video play/pause based on full video visibility in the viewport.
+    // Option 1:
+    useEffect(() => {
+        const videoElement = videoRef.current;
+
+        const handlePlay = async () => {
+            await videoElement.play().catch((error) => {
+                console.log('Error attempting to play:', error);
+            });
+        };
+
+        const handleIntersection = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    if (videoElement.paused) {
+                        videoElement.currentTime = 0;
+                        handlePlay();
+                        // console.log('video is playing:', !videoElement.paused);
+                    }
+                } else {
+                    const playPromise = videoElement.play();
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                videoElement.pause();
+                            })
+                            .catch((error) => {
+                                console.log('Error attempting to play:', error);
+                            });
+                    }
+                }
+            });
+        };
+
+        let observer = new IntersectionObserver(handleIntersection, {
+            threshold: 0.5,
+        });
+
+        observer.observe(videoElement);
+
+        return () => {
+            observer.unobserve(videoElement);
+        };
+    }, []);
 
     // Set 'isVideoPlaying' to true if the video is playing, or false if it paused.
     const handlePlayVideo = () => {
@@ -37,6 +84,10 @@ function VideoPlayer({ data }) {
 
     const handlePauseVideo = () => {
         setIsVideoPlaying(false);
+    };
+
+    const handleVideoEnded = () => {
+        videoRef.current.play();
     };
 
     // Toggle video play/pause on action button click.
@@ -60,8 +111,8 @@ function VideoPlayer({ data }) {
 
     // Toggle volume on/off on volume button click.
     const toggleMuted = () => {
-        setIsMuted(!isMuted);
-        if (isMuted) {
+        setIsMutedGlobal(!isMutedGlobal);
+        if (isMutedGlobal) {
             videoRef.current.volume = 0.4;
             setVolumeValue(40);
         } else {
@@ -75,9 +126,9 @@ function VideoPlayer({ data }) {
         setVolumeValue(volumeValue);
         videoRef.current.volume = volumeValue / 100;
         if (volumeValue === '0') {
-            setIsMuted(true);
+            setIsMutedGlobal(true);
         } else {
-            setIsMuted(false);
+            setIsMutedGlobal(false);
         }
     };
 
@@ -98,6 +149,9 @@ function VideoPlayer({ data }) {
             icon: <ShareFillIcon />,
             count: data.shares_count,
         },
+        {
+            icon: <EllipsisIcon />,
+        },
     ];
 
     return (
@@ -107,12 +161,13 @@ function VideoPlayer({ data }) {
                     <video
                         className={cx('video')}
                         src={data.file_url}
-                        autoPlay
-                        muted={isMuted}
+                        muted={isMutedGlobal}
                         onPlay={handlePlayVideo}
                         onPause={handlePauseVideo}
                         ref={videoRef}
                         onTimeUpdate={handleTimeUpdate}
+                        onEnded={handleVideoEnded}
+                        onClick={togglePlayVideo}
                     ></video>
                     <div className={cx('video-card-bottom')}>
                         <div className={cx('info')}>
@@ -151,42 +206,50 @@ function VideoPlayer({ data }) {
                             <div className={cx('volume-container')}>
                                 <div className={cx('volume-control')}>
                                     <div className={cx('volume-slider-wrapper')}>
-                                        <input
-                                            className={cx('volume-slider')}
-                                            type="range"
-                                            min="0"
-                                            max="100"
-                                            step="1"
-                                            value={volumeValue}
-                                            onChange={handleAdjustVolume}
-                                        />
+                                        <div className={cx('volume-slider')}>
+                                            <input
+                                                className={cx('volume-slider-track')}
+                                                type="range"
+                                                min="0"
+                                                max="100"
+                                                step="1"
+                                                value={volumeValue}
+                                                onChange={handleAdjustVolume}
+                                            />
+                                            <div
+                                                className={cx('volume-slider-fill')}
+                                                style={{ width: `${volumeValue}%` }}
+                                            ></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <button className={cx('volume-btn')} onClick={toggleMuted}>
-                                    {isMuted ? <VolumeXmarkIcon /> : <VolumeMediumIcon />}
+                                    {isMutedGlobal ? <VolumeXmarkIcon /> : <VolumeMediumIcon />}
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className={cx('interaction')}>
-                    <span className={cx('avatar-container')}>
-                        <Avatar
-                            className={cx('avatar')}
-                            width="48px"
-                            height="48px"
-                            src={data.user.avatar}
-                            alt={data.user.nickname}
-                        />
-                        <button
-                            className={cx('avatar-follow-btn', {
-                                followed: isFollowed,
-                            })}
-                            onClick={() => setIsFollowed(!isFollowed)}
-                        >
-                            {isFollowed ? <ThinCheckIcon /> : <ThinPlusIcon />}
-                        </button>
-                    </span>
+                    <AccountPreview data={data}>
+                        <div className={cx('avatar-container')}>
+                            <Avatar
+                                className={cx('avatar')}
+                                width="48px"
+                                height="48px"
+                                src={data.user.avatar}
+                                alt={data.user.nickname}
+                            />
+                            <button
+                                className={cx('avatar-follow-btn', {
+                                    followed: isFollowed,
+                                })}
+                                onClick={() => setIsFollowed(!isFollowed)}
+                            >
+                                {isFollowed ? <ThinCheckIcon /> : <ThinPlusIcon />}
+                            </button>
+                        </div>
+                    </AccountPreview>
                     {interactionItems.map(({ icon, count }, index) => (
                         <InteractionItem key={index} icon={icon} count={count} />
                     ))}
@@ -195,5 +258,11 @@ function VideoPlayer({ data }) {
         </div>
     );
 }
+
+VideoPlayer.propTypes = {
+    data: PropTypes.object.isRequired,
+    isMutedGlobal: PropTypes.bool.isRequired,
+    setIsMutedGlobal: PropTypes.func.isRequired,
+};
 
 export default VideoPlayer;

@@ -47,6 +47,56 @@ const MENU_ITEMS = [
                     code: 'en',
                     title: 'English',
                 },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Tiếng Việt',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                },
             ],
         },
     },
@@ -135,7 +185,12 @@ function Header() {
                 ) : (
                     <Button primary>Log in</Button>
                 )}
-                <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange} hideOnClick={false}>
+                <Menu
+                    items={currentUser ? userMenu : MENU_ITEMS}
+                    onChange={handleMenuChange}
+                    hideOnClick={false}
+                    onscroll={(e) => e.stopPropagation()}
+                >
                     {currentUser ? (
                         <Avatar
                             className={cx('user-avatar')}

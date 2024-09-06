@@ -32,6 +32,7 @@ $videoCardBottomMaxWidth: 215px;
 }
 
 .video {
+    width: 100%;
     height: 100%;
     object-fit: cover;
 }
@@ -108,8 +109,8 @@ $videoCardBottomMaxWidth: 215px;
     display: flex;
     align-items: center;
     height: 0;
-    margin-inline: -8px;
     visibility: hidden;
+    margin-inline: -8px;
     transition: height 0.3s ease-out;
 }
 
@@ -193,6 +194,7 @@ $videoCardBottomMaxWidth: 215px;
     background: rgba(22, 24, 35, 0.34);
     border-radius: 32px;
     margin: 8px 7px 0px;
+    cursor: initial;
     visibility: hidden;
 }
 
@@ -203,19 +205,30 @@ $videoCardBottomMaxWidth: 215px;
     width: 48px;
     height: 2px;
     transform: rotate(-90deg);
-    cursor: pointer;
 }
 
-.volume-slider {
+.volume-slider-track {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     -webkit-appearance: none;
     background-color: $sliderColor;
+    cursor: pointer;
+    z-index: 1;
 }
 
-.volume-slider::-webkit-slider-thumb {
+.volume-slider-track::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
     border-radius: 50%;
+    background-color: var(--white);
+}
+
+.volume-slider-fill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     background-color: var(--white);
 }
 
@@ -292,4 +305,8 @@ $videoCardBottomMaxWidth: 215px;
     color: var(--text-color-secondary);
     font-size: 1.4rem;
     font-family: var(--font-family);
+}
+
+.autoplay-video-ref {
+    margin-bottom: 2px;
 }

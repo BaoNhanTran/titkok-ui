@@ -512,7 +512,7 @@ export const HeartIcon = ({ className, width = '2.4rem', height = '2.4rem' }) =>
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
         >
-            <g clip-path="url(#HeartFill_clip0)">
+            <g clipPath="url(#HeartFill_clip0)">
                 <g filter="url(#HeartFill_filter0_d)">
                     <path
                         fillRule="evenodd"
@@ -537,7 +537,7 @@ export const HeartIcon = ({ className, width = '2.4rem', height = '2.4rem' }) =>
                     filterUnits="userSpaceOnUse"
                     colorInterpolationFilters="sRGB"
                 >
-                    <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+                    <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
                     <feColorMatrix
                         in="SourceAlpha"
                         type="matrix"
@@ -644,6 +644,21 @@ export const ShareFillIcon = ({ className, width = '2.4rem', height = '2.4rem' }
                     <stop offset="1" stopOpacity=".01"></stop>
                 </radialGradient>
             </defs>
+        </svg>
+    );
+};
+
+export const EllipsisIcon = ({ className, width = '2.4rem', height = '2.4rem' }) => {
+    return (
+        <svg
+            className={className}
+            width={width}
+            height={height}
+            viewBox="0 0 48 48"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path d="M4 24a5 5 0 1 1 10 0 5 5 0 0 1-10 0ZM19 24a5 5 0 1 1 10 0 5 5 0 0 1-10 0ZM39 19a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"></path>
         </svg>
     );
 };
