@@ -1,0 +1,44 @@
+@import 'normalize.css';
+
+:root {
+    --font-family: 'TikTokFont';
+    --primary: rgb(254, 44, 85);
+    --text-color: rgb(22, 24, 35);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizespeed;
+    color: var(--text-color);
+}
+
+// Fonts embedded
+@font-face {
+    font-family: 'TikTokFont';
+    src: url(/assets/fonts/TikTokFont-Regular.woff2);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'TikTokFont';
+    src: url(/assets/fonts/TikTokFont-Semibold.woff2);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'TikTokDisplayFont';
+    src: url(/assets/fonts/TikTokDisplayFont-Regular.woff2);
+    font-weight: 400;
+}
