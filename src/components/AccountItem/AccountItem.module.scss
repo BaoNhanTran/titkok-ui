@@ -10,6 +10,10 @@ $infoMaxWidth: 380px;
     display: flex;
     padding: 9px 16px;
     cursor: pointer;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
 }
 
 .avatar {

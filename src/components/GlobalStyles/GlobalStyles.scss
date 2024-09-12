@@ -5,6 +5,7 @@
     --primary: rgb(254, 44, 85);
     --text-color: rgb(22, 24, 35);
     --sub-title-color: rgba(22, 24, 35, 0.5);
+    --hover-color: rgba(22, 24, 35, 0.03);
     --white: rgb(255, 255, 255);
     --gray: rgba(22, 24, 35, 0.06);
 
@@ -35,6 +36,11 @@ button {
     border: none;
     outline: none;
     background-color: transparent;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 // Fonts embedded

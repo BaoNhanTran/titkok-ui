@@ -1,0 +1,41 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    min-height: 36px;
+    margin-left: 16px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 21px;
+    cursor: pointer;
+    user-select: none;
+
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+// Button types
+.primary {
+    background-color: var(--primary);
+    color: var(--white);
+
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), rgb(254, 44, 85);
+    }
+}
+
+.outline {
+    border: 1px solid var(--primary);
+    background-color: var(--white);
+    color: var(--primary);
+
+    &:hover {
+        background-color: rgba(254, 44, 85, 0.06);
+    }
+}
