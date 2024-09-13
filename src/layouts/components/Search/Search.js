@@ -14,7 +14,6 @@ function Search() {
         // Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
         <div>
             <HeadlessTippy
-                visible
                 interactive
                 offset={[0, 8]}
                 render={(attrs) => (

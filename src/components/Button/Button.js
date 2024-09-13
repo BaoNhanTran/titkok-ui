@@ -4,7 +4,17 @@ import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Button({ to, href, primary, outline, disabled, className, children, ...passProps }) {
+function Button({
+    to,
+    href,
+    primary = false,
+    outline = false,
+    disabled = false,
+    className,
+    icon,
+    children,
+    ...passProps
+}) {
     let Comp = 'button';
 
     const props = {
@@ -37,7 +47,8 @@ function Button({ to, href, primary, outline, disabled, className, children, ...
 
     return (
         <Comp className={classes} {...props}>
-            {children}
+            {icon && <span className={cx('icon')}>{icon}</span>}
+            <span className={cx('title')}>{children}</span>
         </Comp>
     );
 }
