@@ -1,16 +1,40 @@
+import { useState } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { useSpring, animated } from '@react-spring/web';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
-import { CaretUpIcon } from '~/Icons/Icons';
+import { CaretUpIcon } from '~/Icons';
+import Header from './Header';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Menu({ children, items = [] }) {
+const defaultFn = () => {};
+
+function Menu({ children, items = [], onChange = defaultFn }) {
+    const [history, setHistory] = useState([{ data: items }]);
+    let menuLevel = `level-${history.length}`;
+    const current = history[history.length - 1];
+
     const renderItems = () => {
-        return items.map((item, index) => <MenuItem key={index} data={item}></MenuItem>);
+        return current.data.map((item, index) => {
+            const isParent = !!item.children;
+
+            const handleMoveToNextPage = () => {
+                if (isParent) {
+                    setHistory((prev) => [...prev, item.children]);
+                } else {
+                    onChange(item);
+                }
+            };
+
+            return <MenuItem key={index} data={item} className={menuLevel} onClick={handleMoveToNextPage}></MenuItem>;
+        });
+    };
+
+    const handleBack = () => {
+        setHistory((prev) => prev.slice(0, -1));
     };
 
     const handleResult = (attrs) => (
@@ -18,9 +42,16 @@ function Menu({ children, items = [] }) {
             <span className={cx('menu-arrow')}>
                 <CaretUpIcon />
             </span>
-            <PopperWrapper className={cx('menu-popper')}>{renderItems()}</PopperWrapper>
+            <PopperWrapper className={cx('menu-popper')}>
+                {history.length > 1 && <Header title={current.title} onBack={handleBack} />}
+                <div className={cx('menu-body')}>{renderItems()}</div>
+            </PopperWrapper>
         </animated.div>
     );
+
+    const handleResetToFirstPage = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
 
     // Use react spring to create the fade out effect
     const initialStyles = { opacity: 0 };
@@ -35,6 +66,7 @@ function Menu({ children, items = [] }) {
     };
 
     const handleHideTippy = ({ unmount }) => {
+        handleResetToFirstPage();
         api.start({
             ...initialStyles,
             config: { tension: 170 },
@@ -44,6 +76,7 @@ function Menu({ children, items = [] }) {
 
     return (
         <HeadlessTippy
+            visible
             interactive
             placement="bottom-end"
             offset={[13, 4]}

@@ -1,5 +1,5 @@
 import HeadlessTippy from '@tippyjs/react/headless';
-import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/Icons/Icons';
+import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import classNames from 'classnames/bind';
