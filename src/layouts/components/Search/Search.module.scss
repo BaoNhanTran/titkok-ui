@@ -53,7 +53,7 @@ button {
 .separate {
     width: 1px;
     height: 28px;
-    background-color: rgba(22, 24, 35, 0.12);
+    background-color: var(--separate-color);
 }
 
 .search-btn {

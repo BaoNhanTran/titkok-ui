@@ -16,11 +16,70 @@
 // Action
 .actions {
     display: flex;
-    width: 160px;
+    align-items: center;
 }
 
+// Unlogged
 .menu-btn {
     margin-left: 16px;
     padding: 0px 4px;
+    cursor: pointer;
+}
+
+.upload-btn {
+    min-width: 110px;
+    margin-left: 0;
+    padding: 0px 16px;
+    border: 1px solid var(--separate-color);
+    border-radius: 2px;
+    font-weight: 600;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+// Logged
+.action-btns-wrapper {
+    line-height: 0;
+}
+
+.action-btns {
+    position: relative;
+    height: 32px;
+    cursor: pointer;
+}
+
+.sup-badge {
+    position: absolute;
+    left: 16px;
+    top: -5px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background-color: var(--primary);
+    color: var(--white);
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 18px;
+}
+
+.messages-btn {
+    margin-left: 32px;
+    padding: 3px 3px 0px;
+}
+
+.inbox-btn {
+    margin-left: 16px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    margin-left: 24px;
+    border-radius: 50%;
+    object-fit: cover;
     cursor: pointer;
 }
