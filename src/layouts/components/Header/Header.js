@@ -17,6 +17,7 @@ import {
     UserIcon,
 } from '~/Icons';
 import Menu from '~/components/Popper/Menu';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 
@@ -133,7 +134,9 @@ function Header() {
                     offsetX={currentUser ? 10 : 12}
                 >
                     {currentUser ? (
-                        <img
+                        <Avatar
+                            width="32px"
+                            height="32px"
                             className={cx('user-avatar')}
                             src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/84a0290f5ea32d59533e37d1a6482ddf.jpeg?lk3s=a5d48078&nonce=88973&refresh_token=55325bcb323217f44f42e959c519cb6e&x-expires=1726477200&x-signature=En2y2hs99eIcsGb20%2Bnv2SLo8iE%3D&shp=a5d48078&shcp=b59d6b55"
                             alt="nguyenvana"
