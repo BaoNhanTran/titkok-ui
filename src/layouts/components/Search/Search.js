@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import * as searchService from '~/services/searchSevice';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -24,18 +25,16 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${debouncedValue}&type=less`)
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResults(res.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setLoading(false);
-                console.log(err);
-            });
+            const res = await searchService.search(debouncedValue);
+            setSearchResults(res);
+
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debouncedValue]);
 
     const handleInput = (e) => {
