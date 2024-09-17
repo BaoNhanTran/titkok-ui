@@ -50,6 +50,16 @@ button {
     color: $searchIconsColor;
 }
 
+.loading {
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        rotate: 360deg;
+    }
+}
+
 .separate {
     width: 1px;
     height: 28px;
