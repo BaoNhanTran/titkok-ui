@@ -3,6 +3,7 @@ import 'tippy.js/dist/tippy.css';
 import images from '~/assets/images';
 import Search from '~/layouts/components/Search';
 import Button from '~/components/Button';
+import config from '~/config';
 import {
     ArrowRightToBracketIcon,
     CircleQuestionIcon,
@@ -20,6 +21,7 @@ import Menu from '~/components/Popper/Menu';
 import Avatar from '~/components/Avatar';
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -96,7 +98,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('logo')}>
-                <img src={images.logo} alt="TikTok" />
+                <Link to={config.routes.home}>
+                    <img src={images.logo} alt="TikTok" />
+                </Link>
             </div>
             <Search />
             <div className={cx('actions')}>

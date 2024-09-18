@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn, offsetX }) {
+function Menu({ children, items = [], onChange = defaultFn, offsetX, hideOnClick = false }) {
     const [history, setHistory] = useState([{ data: items }]);
     let menuLevel = `level-${history.length}`;
     const current = history[history.length - 1];
@@ -76,6 +76,7 @@ function Menu({ children, items = [], onChange = defaultFn, offsetX }) {
 
     return (
         <HeadlessTippy
+            hideOnClick={hideOnClick}
             interactive
             placement="bottom-end"
             offset={[offsetX, 12]}
