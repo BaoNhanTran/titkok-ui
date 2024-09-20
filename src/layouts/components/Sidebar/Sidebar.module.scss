@@ -1,4 +1,31 @@
+@property --scrollbar-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: white;
+}
+
 .wrapper {
     width: 240px;
-    padding: 20px 8px 26px 8px;
+}
+
+.sidebar-container {
+    position: fixed;
+    top: var(--default-layout-header-height);
+    bottom: 0;
+    width: 240px;
+    padding: 20px 0 26px 8px;
+    overflow-y: auto;
+    transition: --scrollbar-color 0.5s ease 0s;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--scrollbar-color);
+    }
+
+    &:hover {
+        --scrollbar-color: var(--gray);
+    }
 }

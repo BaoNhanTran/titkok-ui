@@ -1,0 +1,86 @@
+$infoMaxWidth: 145px;
+
+@mixin textOverflowEllipsis {
+    white-space: nowrap;
+    max-width: $infoMaxWidth;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wrapper {
+    position: relative;
+    padding: 16px 0px;
+
+    &::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 8px;
+        right: 8px;
+        height: 1px;
+        background-color: var(--separate-color);
+        transform: scaleY(0.5);
+    }
+}
+
+.title {
+    padding: 0px 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 18px;
+    color: var(--text-color-secondary);
+}
+
+.account-item {
+    display: flex;
+    align-items: center;
+    height: 48px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 200ms ease-in-out;
+
+    &:hover {
+        background-color: var(--hover-color);
+    }
+}
+
+.avatar {
+    margin-right: 12px;
+}
+
+.nickname {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    line-height: 21px;
+    margin-top: -2px;
+
+    p {
+        @include textOverflowEllipsis();
+    }
+}
+
+.tick {
+    margin-left: 4px;
+}
+
+.name {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: var(--text-color-secondary);
+    @include textOverflowEllipsis();
+}
+
+// See more
+.see-more {
+    margin-top: 8px;
+    padding: 0px 8px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 18px;
+    color: var(--primary);
+    cursor: pointer;
+}

@@ -37,7 +37,7 @@ $searchIconsColor: rgba(22, 24, 35, 0.34);
 }
 
 input:not(:placeholder-shown) ~ .search-btn {
-    color: rgba(22, 24, 35, 0.75);
+    color: var(--text-color-secondary);
 }
 
 button {
