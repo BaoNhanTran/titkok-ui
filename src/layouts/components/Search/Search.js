@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import * as searchService from '~/services/searchSevice';
+import * as searchService from '~/services/searchService';
 import HeadlessTippy from '@tippyjs/react/headless';
 import { CircleNotchIcon, CircleXmarkIcon, MagnifyingGlassIcon } from '~/Icons';
 import { Wrapper as PopperWrapper } from '~/components/Popper';

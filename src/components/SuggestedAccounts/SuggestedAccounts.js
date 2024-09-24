@@ -16,9 +16,9 @@ function SuggestedAccounts() {
 
     useEffect(() => {
         const fetchApi = async () => {
-            const rest = await userService.getSuggestedAccounts(page, PER_PAGE);
+            const res = await userService.getSuggestedAccounts(page, PER_PAGE);
 
-            setSuggestedAccounts((prev) => [...prev, ...rest]);
+            setSuggestedAccounts((prev) => [...prev, ...res]);
         };
 
         fetchApi();
