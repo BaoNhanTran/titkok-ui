@@ -1,6 +1,7 @@
 $videoCardBottomMaxWidth: 230px;
 $white90: rgba(255, 255, 255, 0.9);
 $sliderColor: rgba(255, 255, 255, 0.34);
+$overLayColor: rgba(22, 24, 35, 0.34);
 
 @mixin textOverflowEllipsis {
     white-space: nowrap;
@@ -34,6 +35,29 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     object-fit: cover;
 }
 
+.play-icon,
+.pause-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    animation: zoom-in-fade-in-fade-out 600ms ease-in-out forwards;
+}
+
+@keyframes zoom-in-fade-in-fade-out {
+    0% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+    }
+}
+
 // Video card top
 .video-card-top {
     position: absolute;
@@ -45,7 +69,7 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     height: 48px;
     padding: 4px;
     background: linear-gradient(0deg, rgba(18, 18, 18, 0) 0%, rgba(12, 12, 12, 0.2) 100%);
-    // opacity: 0;
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -77,26 +101,41 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     width: 64px;
     height: 24px;
     margin: 7px 8px 7px 0px;
-    background-color: rgba(22, 24, 35, 0.34);
+    background-color: $overLayColor;
     border-radius: 32px;
     cursor: initial;
-    // display: none;
+    display: none;
 }
 
 .volume-slider {
-    -webkit-appearance: none;
     position: absolute;
     top: 11px;
     left: 8px;
     right: 8px;
     width: 48px;
     height: 2px;
-    background-color: $sliderColor;
     border-radius: 4px;
+}
+
+.volume-slider-track,
+.volume-slider-fill {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.volume-slider-fill {
+    background-color: var(--white);
+}
+
+.volume-slider-track {
+    -webkit-appearance: none;
+    background-color: $sliderColor;
     cursor: pointer;
 }
 
-.volume-slider::-webkit-slider-thumb {
+.volume-slider-track::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
@@ -196,6 +235,19 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     font-weight: 400;
 }
 
+.current-time {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 40px;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: $white90;
+    line-height: 38px;
+    text-align: center;
+    font-feature-settings: 'tnum';
+}
+
 // Slider
 .slider-container {
     position: absolute;
@@ -204,7 +256,8 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     height: 16px;
     cursor: initial;
 
-    &:hover .slider {
+    &:hover .slider,
+    &:hover .slider-fill {
         height: 6px;
     }
 
@@ -213,16 +266,20 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     }
 }
 
-.slider {
+.slider,
+.slider-fill {
     position: absolute;
     left: 0;
     bottom: 0;
+    height: 4px;
+    transition: height 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 4px;
     background-color: $sliderColor;
-    cursor: pointer;
-    transition: height 200ms ease-in-out;
 }
 
 .slider::-webkit-slider-thumb {
@@ -232,6 +289,10 @@ $sliderColor: rgba(255, 255, 255, 0.34);
     border-radius: 50%;
     background-color: transparent;
     cursor: pointer;
+}
+
+.slider-fill {
+    background-color: rgb(255, 44, 85);
 }
 
 // Interaction item

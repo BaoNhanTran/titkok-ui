@@ -2,4 +2,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-inline: 16px 240px;
+}
+
+.bottom-element {
+    margin-top: 20px;
+}
+
+// Responsive
+@media screen and (max-width: 1071px) {
+    .wrapper {
+        padding-inline-end: 72px;
+    }
 }
